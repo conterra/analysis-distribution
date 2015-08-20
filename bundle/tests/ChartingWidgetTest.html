@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+    "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <title>Charting Widget Test Page</title>
+        <link rel="stylesheet" type="text/css"
+              href="http://localhost:8080/ct-mapapps-webapp-3.2.0/resources/jsregistry/root/themes/3.2.0/themes/everlasting/everlasting.css"/>
+        <script type="text/javascript">
+            var dojoConfig = {
+                parseOnLoad: true,
+                async: true,
+                isDebug: true,
+                baseUrl: "../../",
+                tlmSiblingOfDojo: false,
+                packages: [
+                    {name: "apprt", location:
+                                "http://localhost:8080/ct-mapapps-webapp-3.2.0/resources/jsregistry/root/apprt/3.2.0"},
+                    {name: "xstyle", location:
+                                "http://localhost:8080/ct-mapapps-webapp-3.2.0/resources/jsregistry/root/xstyle/0.3.1"},
+                    {name: "ct", location:
+                                "http://localhost:8080/ct-mapapps-webapp-3.2.0/resources/jsregistry/root/ct/3.2.0"},
+                    {name: "dojo", location:
+                                "http://localhost:8080/ct-mapapps-webapp-3.2.0/resources/jsregistry/root/dojo/1.10.4"},
+                    {name: "dijit", location:
+                                "http://localhost:8080/ct-mapapps-webapp-3.2.0/resources/jsregistry/root/dijit/1.10.4"},
+                    {name: "dojox", location:
+                                "http://localhost:8080/ct-mapapps-webapp-3.2.0/resources/jsregistry/root/dojox/1.10.4"},
+                    {name: "query", location: "query"}
+                ]
+            };</script>
+        <script type="text/javascript"
+        src="http://localhost:8080/ct-mapapps-webapp-3.2.0/resources/jsregistry/root/dojo/1.10.4/dojo.js"></script>
+        <script type="text/javascript">
+            require([
+                "dojo/ready", "featureregistration/TabWidget"
+            ], function (ready, TabWidget) {
+                ready(function () {
+                    var pseudoStore = {
+                        query: function() {
+                            return []
+                        },
+                        getMetadata: function () {
+                            return {
+                                fields: [
+                                    {
+                                        name: "status",
+                                        type: "esriFieldTypeSmallInteger",
+                                        alias: "Status",
+                                        editable: true,
+                                        domain: {
+                                            type: "codedValue",
+                                            name: "StatusCodes",
+                                            codedValues: [
+                                                {
+                                                    name: "New",
+                                                    code: 1
+                                                },
+                                                {
+                                                    name: "Open",
+                                                    code: 2
+                                                },
+                                                {
+                                                    name: "Closed",
+                                                    code: 3
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        name: "status2",
+                                        type: "esriFieldTypeSmallInteger",
+                                        alias: "Status2",
+                                        editable: true,
+                                        domain: {
+                                            type: "codedValue",
+                                            name: "StatusCodes",
+                                            codedValues: [
+                                                {
+                                                    name: "New",
+                                                    code: 1
+                                                },
+                                                {
+                                                    name: "Open",
+                                                    code: 2
+                                                },
+                                                {
+                                                    name: "Closed",
+                                                    code: 3
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                    var mapState = {
+                        getExtent: function () {
+                            return {}
+                        }
+                    };
+                    var w = new TabWidget();
+                    w._store = pseudoStore;
+                    w._mapState = mapState;
+                    w = w.createInstance();
+                    w.placeAt("widget");
+                    w.resize({w: 300, h: 300});
+                    w.startup();
+                });
+            });
+        </script>
+    </head>
+    <body class="everlasting">
+        <div id="widget"></div>
+    </body>
+</html>

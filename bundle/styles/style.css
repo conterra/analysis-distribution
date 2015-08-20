@@ -1,0 +1,30 @@
+.container {
+    margin: 5px 0;  
+}
+.container > span {
+    vertical-align: middle
+}
+.chartNode {
+    overflow: hidden;
+}
+.ctAppRoot .mblSwitch {
+    margin: 0px 10px 0px 10px;
+}
+.ctAppRoot .chartSwitch .mblSwitchBgLeft {
+    background-color: #2ecc71;
+}
+.ctAppRoot .chartSwitch .mblSwitchBgRight {
+    background-color: #e74c3c;
+}
+.ctAppRoot .extentSwitch .mblSwitchBgLeft {
+    background-color: #2ecc71;
+}
+.ctAppRoot .extentSwitch .mblSwitchBgRight {
+    background-color: #e74c3c;
+}
+.ctAppRoot .mblSwitchText {
+    color: #fff;
+}
+.ctAppRoot .mblSwitchOff .mblSwitchKnob {
+    background-color: #fff;
+}

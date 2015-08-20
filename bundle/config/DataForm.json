@@ -1,0 +1,49 @@
+{
+    "dataform-version": "1.0.0",
+    "type": "gridpanel",
+    "showLabels": true,
+    "children": [
+        {
+            "type": "selectbox",
+            "field": "storeId",
+            "label": "${store}",
+            "searchAttribute": "title",
+            "labelAttribute": "${title}",
+            "store": "storesStore01"
+        },
+        {
+            "type": "selectbox",
+            "field": "chartType",
+            "label": "${defaultChartType}",
+            "searchAttribute": "name",
+            "labelAttribute": "${name}",
+            "values": [{
+                    "name": "${column}",
+                    "value": "column"
+                }, {
+                    "name": "${pie}",
+                    "value": "pie"
+                }
+            ],
+            "max": 2,
+            "size": {
+                "w": 100
+            }
+        },
+        {
+            "type": "checkbox",
+            "label": "${useExtent}",
+            "field": "useExtent"
+        },
+        {
+            "type": "checkbox",
+            "label": "${enableChartSwitch}",
+            "field": "enableChartSwitch"
+        },
+        {
+            "type": "checkbox",
+            "label": "${enableExtentSwitch}",
+            "field": "enableExtentSwitch"
+        }
+    ]
+}
