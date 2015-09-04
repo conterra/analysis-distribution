@@ -1,1 +1,4 @@
-sources/.idea
+target/*
+.idea/*
+*.iml
+nbactions.xml
