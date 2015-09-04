@@ -342,7 +342,7 @@
                             <templateFile>${project.build.directory}/${project.artifactId}-${project.version}.zip</templateFile>
                             <templateResources>
                                 <templateResource>
-                                    <directory>${js.build.outputPath}/apps/analysis-distribution-sample-app</directory>
+                                    <directory>${js.build.outputPath}/apps/sample</directory>
                                     <includes>
                                         <include>**/*</include>
                                     </includes>
@@ -414,7 +414,7 @@
         <ct.jsrt-test.version>1.0.4</ct.jsrt-test.version>
         
         <!-- the default app, replaced in the *.html files to switch app names-->
-        <default.app.name>analysis-distribution-sample-app</default.app.name>
+        <default.app.name>sample</default.app.name>
         <client.config.initjs>$\{mapapps.remote.base\}/resources/jsregistry/root/ct/${mapapps.version}/dojo-init.js</client.config.initjs>
 
         <proxy.allowedServerUrls>
