@@ -1,6 +1,6 @@
 {
-    "Bundle-SymbolicName": "dn_analysis_distribution-config",
-    "Bundle-Version": "1.0",
+    "Bundle-SymbolicName": "devnet_analysis_distribution-config",
+    "Bundle-Version": "1.0.0",
     "Bundle-Name": "${bundleName}",
     "Bundle-Description": "${bundleDescription}",
     "Bundle-Vendor": "con terra GmbH",
@@ -33,8 +33,8 @@
             "instanceFactory": true,
             "properties": {
                 "dataformFile": "resource('./DataForm.json')",
-                "bid": "dn_analysis_distribution",
-                "pid": "dn_analysis_distribution-TabWidgetFactory",
+                "bid": "devnet_analysis_distribution",
+                "pid": "devnet_analysis_distribution-TabWidgetFactory",
                 "id": "analysisDistributionBuilderWidget",
                 "defaultProperties": {
                     "storeId": "defineInAppJson",
