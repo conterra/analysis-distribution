@@ -1,546 +1,546 @@
 {
-  "properties": {
-    "modifiedAt": 1437731876185,
-    "templateId": "14EBF7D3E4D120D",
-    "id": "analysis_distribution_testapp",
-    "createdAt": 1437731756725,
-    "modifiedBy": "admin",
-    "editorState": "DRAFT",
-    "thumbnailFile": "",
-    "templateFile": "",
-    "description": "",
-    "title": "Analysis / Distribution Sample",
-    "createdBy": "admin",
-    "optimized": true
-  },
-  "load": {
-    "bundleLocations": [
-      "bundles",
-      "localbundles"
-    ],
-    "styles": ["${app}:app.css"],
-    "allowedBundles": [
-      "dn_analysis_distribution",
-      "custominfo",
-      "dataform",
-      "parametermanager",
-      "splashscreen",
-      "toolset",
-      "windowmanager",
-      "contentviewer",
-      "coordinatetransformer",
-      "map",
-      "legend",
-      "agssearch",
-      "resultcenter",
-      "system",
-      "templatelayout",
-      "templates",
-      "themes"
-    ]
-  },
-  "bundles": {
-    "dn_analysis_distribution": {
-      "TabWidgetFactory": {
-        "storeId": "auskunftStore",
-        "chartType": "column",
-        "useExtent": false
-      }
+    "properties": {
+        "modifiedAt": 1437731876185,
+        "templateId": "14EBF7D3E4D120D",
+        "id": "analysis_distribution_testapp",
+        "createdAt": 1437731756725,
+        "modifiedBy": "admin",
+        "editorState": "DRAFT",
+        "thumbnailFile": "",
+        "templateFile": "",
+        "description": "",
+        "title": "Analysis / Distribution Sample",
+        "createdBy": "admin",
+        "optimized": true
     },
-    "agssearch": {
-      "AGSStore": [
-        {
-          "title": "Stoerungen",
-          "description": "",
-          "idProperty": "objectid",
-          "url": "http://services.conterra.de/arcgis/rest/services/training/stoerungen/MapServer/0",
-          "useIn": ["selection"],
-          "filterOptions": {
-            "suggestContains": true
-          },
-          "enablePagination": true,
-          "fetchIdProperty": true,
-          "id": "auskunftStore"
+    "load": {
+        "bundleLocations": [
+            "bundles",
+            "localbundles"
+        ],
+        "styles": ["${app}:app.css"],
+        "allowedBundles": [
+            "devnet_analysis_distribution",
+            "custominfo",
+            "dataform",
+            "parametermanager",
+            "splashscreen",
+            "toolset",
+            "windowmanager",
+            "contentviewer",
+            "coordinatetransformer",
+            "map",
+            "legend",
+            "agssearch",
+            "resultcenter",
+            "system",
+            "templatelayout",
+            "templates",
+            "themes"
+        ]
+    },
+    "bundles": {
+        "devnet_analysis_distribution": {
+            "TabWidgetFactory": {
+                "storeId": "auskunftStore",
+                "chartType": "column",
+                "useExtent": false
+            }
         },
-        {
-          "title": "Police",
-          "description": "",
-          "idProperty": "objectid",
-          "url": "https://sampleserver6.arcgisonline.com/arcgis/rest/services/RedlandsEmergencyVehicles/MapServer/1",
-          "useIn": ["selection"],
-          "filterOptions": {
-            "suggestContains": true
-          },
-          "enablePagination": true,
-          "fetchIdProperty": true,
-          "id": "policeStore"
-        },
-        {
-          "title": "Fire",
-          "description": "",
-          "idProperty": "objectid",
-          "url": "https://sampleserver6.arcgisonline.com/arcgis/rest/services/RedlandsEmergencyVehicles/MapServer/2",
-          "useIn": ["selection"],
-          "filterOptions": {
-            "suggestContains": true
-          },
-          "enablePagination": true,
-          "fetchIdProperty": true,
-          "id": "fireStore"
-        },
-        {
-          "title": "CommercialDamageAssessment",
-          "description": "",
-          "idProperty": "objectid",
-          "url": "https://sampleserver6.arcgisonline.com/arcgis/rest/services/CommercialDamageAssessment/MapServer/0",
-          "useIn": ["selection"],
-          "filterOptions": {
-            "suggestContains": true
-          },
-          "enablePagination": true,
-          "fetchIdProperty": true,
-          "id": "damageStore"
-        }
-      ],
-      "enabled": true
-    },
-    "console": {
-      "enabled": true
-    },
-    "contentviewer": {
-      "enabled": true
-    },
-    "coordinatetransformer": {
-      "enabled": true
-    },
-    "custominfo": {
-      "enabled": true
-    },
-    "dataform": {
-      "enabled": true
-    },
-    "infoviewer": {
-      "enabled": true
-    },
-    "legend": {
-      "enabled": true
-    },
-    "map": {
-      "MapModelFactory": {
-        "_configData": {
-          "maps": [
-            {
-              "id": "default",
-              "glass_pane": [
+        "agssearch": {
+            "AGSStore": [
                 {
-                  "id": "settlements",
-                  "enabled": true,
-                  "maptip": {
-                    "content": "{name2}",
-                    "dimensions": {
-                      "width": 100,
-                      "height": 28
-                    }
-                  },
-                  "infoTemplate": {
-                    "title": "${name}",
-                    "content": "<p><b>${name2}<br />${name3}</b></p><p>${street}<br />${plz_city}</p><p>Telefon ${tel}<br /><a href='mailto:${email}'>${email}</a></p><p><a href='${link}' target='_blank'>Homepage aufrufen</a></p>",
-                    "dimensions": {
-                      "width": 250,
-                      "height": 250
-                    }
-                  },
-                  "graphics": [
-                    {
-                      "geometry": {
-                        "x": 851833,
-                        "y": 6788378,
-                        "spatialReference": {
-                          "wkid": 3857
-                        }
-                      },
-                      "attributes": {
-                        "name": "con terra",
-                        "name2": "con terra GmbH",
-                        "name3": "",
-                        "street": "Martin-Luther-King-Weg 24",
-                        "plz_city": "DE-48155 Muenster",
-                        "tel": "+49 251 74745 0",
-                        "email": "conterra@conterra.de",
-                        "link": "http://www.conterra.de/"
-                      },
-                      "symbol": {
-                        "color": [
-                          221,
-                          0,
-                          85,
-                          230
-                        ],
-                        "size": 12,
-                        "angle": 0,
-                        "xoffset": 0,
-                        "yoffset": 0,
-                        "type": "esriSMS",
-                        "style": "esriSMSSquare",
-                        "outline": {
-                          "color": [
-                            255,
-                            255,
-                            255,
-                            255
-                          ],
-                          "width": 0,
-                          "type": "esriSLS",
-                          "style": "esriSLSSolid"
-                        }
-                      }
-                    }
-                  ]
-                }
-              ],
-              "operationalLayer": [
-                {
-                  "id": "service_32645_1437731870775",
-                  "title": "Stoerungen",
-                  "enabled": true,
-                  "service": "service_32645",
-                  "category": {
                     "title": "Stoerungen",
-                    "description": "Karte mit fiktiven St\u00F6rungsmeldungen f\u00FCr map.apps Trainings.",
-                    "imgUrl": ""
-                  },
-                  "layers": ["*"],
-                  "opacity": 1
-                },
-                {
-                  "id": "service_32646_1437731870776",
-                  "title": "RedlandsEmergencyVehicles",
-                  "enabled": true,
-                  "service": "service_32646",
-                  "category": {
-                    "title": "RedlandsEmergencyVehicles",
                     "description": "",
-                    "imgUrl": ""
-                  },
-                  "layers": ["*"],
-                  "opacity": 1
+                    "idProperty": "objectid",
+                    "url": "http://services.conterra.de/arcgis/rest/services/training/stoerungen/MapServer/0",
+                    "useIn": ["selection"],
+                    "filterOptions": {
+                        "suggestContains": true
+                    },
+                    "enablePagination": true,
+                    "fetchIdProperty": true,
+                    "id": "auskunftStore"
                 },
                 {
-                  "id": "service_32647_1437731870776",
-                  "title": "CommercialDamageAssessment",
-                  "enabled": true,
-                  "service": "service_32647",
-                  "category": {
+                    "title": "Police",
+                    "description": "",
+                    "idProperty": "objectid",
+                    "url": "https://sampleserver6.arcgisonline.com/arcgis/rest/services/RedlandsEmergencyVehicles/MapServer/1",
+                    "useIn": ["selection"],
+                    "filterOptions": {
+                        "suggestContains": true
+                    },
+                    "enablePagination": true,
+                    "fetchIdProperty": true,
+                    "id": "policeStore"
+                },
+                {
+                    "title": "Fire",
+                    "description": "",
+                    "idProperty": "objectid",
+                    "url": "https://sampleserver6.arcgisonline.com/arcgis/rest/services/RedlandsEmergencyVehicles/MapServer/2",
+                    "useIn": ["selection"],
+                    "filterOptions": {
+                        "suggestContains": true
+                    },
+                    "enablePagination": true,
+                    "fetchIdProperty": true,
+                    "id": "fireStore"
+                },
+                {
                     "title": "CommercialDamageAssessment",
                     "description": "",
-                    "imgUrl": ""
-                  },
-                  "layers": ["*"],
-                  "opacity": 1
+                    "idProperty": "objectid",
+                    "url": "https://sampleserver6.arcgisonline.com/arcgis/rest/services/CommercialDamageAssessment/MapServer/0",
+                    "useIn": ["selection"],
+                    "filterOptions": {
+                        "suggestContains": true
+                    },
+                    "enablePagination": true,
+                    "fetchIdProperty": true,
+                    "id": "damageStore"
                 }
-              ],
-              "baseLayer": [
-                {
-                  "title": "Topographische Karte",
-                  "enabled": true,
-                  "service": "worldtopo",
-                  "children": [
-                    {
-                      "layer": "10",
-                      "enabled": true
-                    }
-                  ],
-                  "category": {
-                    "title": "Topographische Karte",
-                    "description": "Eine topographische Weltkarte",
-                    "imgUrl": "http://localhost:8080/ct-mapapps-webapp-3.0.1/js/bundles/mapcore/map/config/styles/images/defaultCover.png"
-                  },
-                  "id": "worldtopo_1437731843967"
-                }
-              ]
-            }
-          ]
-        }
-      },
-      "MapState": {
-        "initialExtent": {
-          "xmin": 827809.8154484094,
-          "xmax": 888959.4380764689,
-          "ymin": 6771304.38617298,
-          "ymax": 6812427.50739035,
-          "wkid": 3857
-        }
-      },
-      "MapWidgetFactory": {
-        "esriMapOpts": {
-          "slider": false,
-          "nav": false,
-          "logo": true,
-          "sliderStyle": "small",
-          "doubleClickZoom": true,
-          "clickRecenter": true,
-          "pan": true,
-          "rubberBandZoom": true,
-          "keyboardNavigation": true,
-          "scrollWheelZoom": true,
-          "sliderPosition": "bottom-right",
-          "displayGraphicsOnPan": true,
-          "fadeOnZoom": true,
-          "showAttribution": true,
-          "sliderOrientation": "vertical",
-          "sliderLabels": [""],
-          "navigationMode": "css-transforms"
-        }
-      },
-      "MappingResourceRegistryFactory": {
-        "_knownServices": {
-          "services": [
-            {
-              "id": "worldimage",
-              "url": "http://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer",
-              "type": "AGS_TILED",
-              "title": "Luftbild",
-              "description": "Luftbildaufnahmen der gesamten Welt",
-              "layers": [
-                {
-                  "id": "0",
-                  "title": "World Imagery"
-                },
-                {
-                  "id": "1",
-                  "title": "Low Resolution 15m Imagery"
-                },
-                {
-                  "id": "2",
-                  "title": "High Resolution 60cm Imagery"
-                },
-                {
-                  "id": "3",
-                  "title": "High Resolution 30cm Imagery"
-                }
-              ]
-            },
-            {
-              "id": "worldtopo",
-              "url": "http://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer",
-              "type": "AGS_TILED",
-              "title": "Topographische Karte",
-              "description": "Eine topographische Weltkarte",
-              "layers": [
-                {
-                  "id": "0",
-                  "title": "Topographic Info"
-                },
-                {
-                  "id": "1",
-                  "title": "Elevation (m)",
-                  "parentId": "0"
-                },
-                {
-                  "id": "2",
-                  "title": "Elevation (ft)",
-                  "parentId": "0"
-                },
-                {
-                  "id": "3",
-                  "title": "Slope",
-                  "parentId": "0"
-                },
-                {
-                  "id": "4",
-                  "title": "Aspect",
-                  "parentId": "0"
-                },
-                {
-                  "id": "5",
-                  "title": "Places Info"
-                },
-                {
-                  "id": "6",
-                  "title": "Place Names (Country Level)",
-                  "parentId": "5",
-                  "maxScale": 80000000
-                },
-                {
-                  "id": "7",
-                  "title": "Place Names (State Level)",
-                  "parentId": "5",
-                  "maxScale": 80000001
-                },
-                {
-                  "id": "8",
-                  "title": "Place Names (County Level)",
-                  "parentId": "5",
-                  "maxScale": 1500001
-                },
-                {
-                  "id": "9",
-                  "title": "Place Names (City Level)",
-                  "parentId": "5",
-                  "maxScale": 399999
-                },
-                {
-                  "id": "10",
-                  "title": "Citations"
-                }
-              ]
-            },
-            {
-              "id": "streets",
-              "description": "Eine detaillierte Stra\u00DFenkarte",
-              "url": "http://services.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer",
-              "type": "AGS_TILED",
-              "title": "Stra\u00DFen",
-              "layers": [
-                {
-                  "id": "0",
-                  "title": "Stra\u00DFen"
-                }
-              ]
-            },
-            {
-              "id": "service_32645",
-              "url": "http://services.conterra.de/arcgis/rest/services/training/stoerungen/MapServer",
-              "type": "AGS_DYNAMIC",
-              "title": "Stoerungen",
-              "description": "Karte mit fiktiven St\u00F6rungsmeldungen f\u00FCr map.apps Trainings.",
-              "layers": [
-                {
-                  "id": "0",
-                  "title": "St\u00F6rungen",
-                  "enabled": true
-                },
-                {
-                  "id": "1",
-                  "title": "Status",
-                  "enabled": true
-                }
-              ],
-              "options": {}
-            },
-            {
-              "id": "service_32646",
-              "url": "https://sampleserver6.arcgisonline.com/arcgis/rest/services/RedlandsEmergencyVehicles/MapServer",
-              "type": "AGS_DYNAMIC",
-              "title": "RedlandsEmergency",
-              "description": "",
-              "layers": [
-                {
-                  "id": "0",
-                  "title": "Ambulances",
-                  "enabled": false
-                },
-                {
-                  "id": "0",
-                  "title": "Police",
-                  "enabled": true
-                },
-                {
-                  "id": "0",
-                  "title": "Fire",
-                  "enabled": true
-                }
-              ],
-              "options": {}
-            },
-            {
-              "id": "service_32647",
-              "url": "https://sampleserver6.arcgisonline.com/arcgis/rest/services/CommercialDamageAssessment/MapServer",
-              "type": "AGS_DYNAMIC",
-              "title": "CommercialDamageAssessment",
-              "description": "",
-              "layers": [
-                {
-                  "id": "0",
-                  "title": "Damage to Commercial Buildings",
-                  "enabled": false
-                }
-              ],
-              "options": {}
-            }
-          ]
-        }
-      },
-      "enabled": true
-    },
-    "mapflow": {
-      "enabled": true
-    },
-    "maptip": {
-      "enabled": true
-    },
-    "mobiletoc": {
-      "enabled": true
-    },
-    "mobileview": {
-      "enabled": true
-    },
-    "notifier": {
-      "enabled": true
-    },
-    "parametermanager": {
-      "enabled": true
-    },
-    "selection": {
-      "SelectionAction": {
-        "autoDeactivateTool": true
-      },
-      "enabled": true
-    },
-    "splashscreen": {
-      "enabled": true
-    },
-    "templatelayout": {
-      "enabled": true
-    },
-    "templates": {
-      "TemplateModel": {
-        "_selectedTemplate": "seasons"
-      },
-      "TemplateSelector": {
-        "componentEnabled": false
-      },
-      "enabled": true
-    },
-    "themes": {
-      "ApplicationStyleWriter": {
-        "styles": ["${app}:app.css"]
-      },
-      "ThemeModel": {
-        "_selectedTheme": "everlasting"
-      },
-      "ThemeSelector": {
-        "componentEnabled": false
-      },
-      "enabled": true
-    },
-    "toolset": {
-      "ToolsetManager": {
-        "toolsets": [
-          {
-            "id": "dropdown1",
-            "title": "Werkzeuge",
-            "tools": [
-              "analysisDistributionTool",
-              "search_*"
             ],
-            "container": "map",
-            "__isDirty": true,
-            "position": {
-              "rel_t": 20,
-              "rel_l": 20
+            "enabled": true
+        },
+        "console": {
+            "enabled": true
+        },
+        "contentviewer": {
+            "enabled": true
+        },
+        "coordinatetransformer": {
+            "enabled": true
+        },
+        "custominfo": {
+            "enabled": true
+        },
+        "dataform": {
+            "enabled": true
+        },
+        "infoviewer": {
+            "enabled": true
+        },
+        "legend": {
+            "enabled": true
+        },
+        "map": {
+            "MapModelFactory": {
+                "_configData": {
+                    "maps": [
+                        {
+                            "id": "default",
+                            "glass_pane": [
+                                {
+                                    "id": "settlements",
+                                    "enabled": true,
+                                    "maptip": {
+                                        "content": "{name2}",
+                                        "dimensions": {
+                                            "width": 100,
+                                            "height": 28
+                                        }
+                                    },
+                                    "infoTemplate": {
+                                        "title": "${name}",
+                                        "content": "<p><b>${name2}<br />${name3}</b></p><p>${street}<br />${plz_city}</p><p>Telefon ${tel}<br /><a href='mailto:${email}'>${email}</a></p><p><a href='${link}' target='_blank'>Homepage aufrufen</a></p>",
+                                        "dimensions": {
+                                            "width": 250,
+                                            "height": 250
+                                        }
+                                    },
+                                    "graphics": [
+                                        {
+                                            "geometry": {
+                                                "x": 851833,
+                                                "y": 6788378,
+                                                "spatialReference": {
+                                                    "wkid": 3857
+                                                }
+                                            },
+                                            "attributes": {
+                                                "name": "con terra",
+                                                "name2": "con terra GmbH",
+                                                "name3": "",
+                                                "street": "Martin-Luther-King-Weg 24",
+                                                "plz_city": "DE-48155 Muenster",
+                                                "tel": "+49 251 74745 0",
+                                                "email": "conterra@conterra.de",
+                                                "link": "http://www.conterra.de/"
+                                            },
+                                            "symbol": {
+                                                "color": [
+                                                    221,
+                                                    0,
+                                                    85,
+                                                    230
+                                                ],
+                                                "size": 12,
+                                                "angle": 0,
+                                                "xoffset": 0,
+                                                "yoffset": 0,
+                                                "type": "esriSMS",
+                                                "style": "esriSMSSquare",
+                                                "outline": {
+                                                    "color": [
+                                                        255,
+                                                        255,
+                                                        255,
+                                                        255
+                                                    ],
+                                                    "width": 0,
+                                                    "type": "esriSLS",
+                                                    "style": "esriSLSSolid"
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            ],
+                            "operationalLayer": [
+                                {
+                                    "id": "service_32645_1437731870775",
+                                    "title": "Stoerungen",
+                                    "enabled": true,
+                                    "service": "service_32645",
+                                    "category": {
+                                        "title": "Stoerungen",
+                                        "description": "Karte mit fiktiven St\u00F6rungsmeldungen f\u00FCr map.apps Trainings.",
+                                        "imgUrl": ""
+                                    },
+                                    "layers": ["*"],
+                                    "opacity": 1
+                                },
+                                {
+                                    "id": "service_32646_1437731870776",
+                                    "title": "RedlandsEmergencyVehicles",
+                                    "enabled": true,
+                                    "service": "service_32646",
+                                    "category": {
+                                        "title": "RedlandsEmergencyVehicles",
+                                        "description": "",
+                                        "imgUrl": ""
+                                    },
+                                    "layers": ["*"],
+                                    "opacity": 1
+                                },
+                                {
+                                    "id": "service_32647_1437731870776",
+                                    "title": "CommercialDamageAssessment",
+                                    "enabled": true,
+                                    "service": "service_32647",
+                                    "category": {
+                                        "title": "CommercialDamageAssessment",
+                                        "description": "",
+                                        "imgUrl": ""
+                                    },
+                                    "layers": ["*"],
+                                    "opacity": 1
+                                }
+                            ],
+                            "baseLayer": [
+                                {
+                                    "title": "Topographische Karte",
+                                    "enabled": true,
+                                    "service": "worldtopo",
+                                    "children": [
+                                        {
+                                            "layer": "10",
+                                            "enabled": true
+                                        }
+                                    ],
+                                    "category": {
+                                        "title": "Topographische Karte",
+                                        "description": "Eine topographische Weltkarte",
+                                        "imgUrl": "http://localhost:8080/ct-mapapps-webapp-3.0.1/js/bundles/mapcore/map/config/styles/images/defaultCover.png"
+                                    },
+                                    "id": "worldtopo_1437731843967"
+                                }
+                            ]
+                        }
+                    ]
+                }
             },
-            "cssClass": "notitle",
-            "windowType": "fixed",
-            "tooltip": "Werkzeuge",
-            "max_horizontal": 1
-          }
-        ]
-      },
-      "enabled": true
-    },
-    "windowmanager": {
-      "enabled": true
+            "MapState": {
+                "initialExtent": {
+                    "xmin": 827809.8154484094,
+                    "xmax": 888959.4380764689,
+                    "ymin": 6771304.38617298,
+                    "ymax": 6812427.50739035,
+                    "wkid": 3857
+                }
+            },
+            "MapWidgetFactory": {
+                "esriMapOpts": {
+                    "slider": false,
+                    "nav": false,
+                    "logo": true,
+                    "sliderStyle": "small",
+                    "doubleClickZoom": true,
+                    "clickRecenter": true,
+                    "pan": true,
+                    "rubberBandZoom": true,
+                    "keyboardNavigation": true,
+                    "scrollWheelZoom": true,
+                    "sliderPosition": "bottom-right",
+                    "displayGraphicsOnPan": true,
+                    "fadeOnZoom": true,
+                    "showAttribution": true,
+                    "sliderOrientation": "vertical",
+                    "sliderLabels": [""],
+                    "navigationMode": "css-transforms"
+                }
+            },
+            "MappingResourceRegistryFactory": {
+                "_knownServices": {
+                    "services": [
+                        {
+                            "id": "worldimage",
+                            "url": "http://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer",
+                            "type": "AGS_TILED",
+                            "title": "Luftbild",
+                            "description": "Luftbildaufnahmen der gesamten Welt",
+                            "layers": [
+                                {
+                                    "id": "0",
+                                    "title": "World Imagery"
+                                },
+                                {
+                                    "id": "1",
+                                    "title": "Low Resolution 15m Imagery"
+                                },
+                                {
+                                    "id": "2",
+                                    "title": "High Resolution 60cm Imagery"
+                                },
+                                {
+                                    "id": "3",
+                                    "title": "High Resolution 30cm Imagery"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "worldtopo",
+                            "url": "http://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer",
+                            "type": "AGS_TILED",
+                            "title": "Topographische Karte",
+                            "description": "Eine topographische Weltkarte",
+                            "layers": [
+                                {
+                                    "id": "0",
+                                    "title": "Topographic Info"
+                                },
+                                {
+                                    "id": "1",
+                                    "title": "Elevation (m)",
+                                    "parentId": "0"
+                                },
+                                {
+                                    "id": "2",
+                                    "title": "Elevation (ft)",
+                                    "parentId": "0"
+                                },
+                                {
+                                    "id": "3",
+                                    "title": "Slope",
+                                    "parentId": "0"
+                                },
+                                {
+                                    "id": "4",
+                                    "title": "Aspect",
+                                    "parentId": "0"
+                                },
+                                {
+                                    "id": "5",
+                                    "title": "Places Info"
+                                },
+                                {
+                                    "id": "6",
+                                    "title": "Place Names (Country Level)",
+                                    "parentId": "5",
+                                    "maxScale": 80000000
+                                },
+                                {
+                                    "id": "7",
+                                    "title": "Place Names (State Level)",
+                                    "parentId": "5",
+                                    "maxScale": 80000001
+                                },
+                                {
+                                    "id": "8",
+                                    "title": "Place Names (County Level)",
+                                    "parentId": "5",
+                                    "maxScale": 1500001
+                                },
+                                {
+                                    "id": "9",
+                                    "title": "Place Names (City Level)",
+                                    "parentId": "5",
+                                    "maxScale": 399999
+                                },
+                                {
+                                    "id": "10",
+                                    "title": "Citations"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "streets",
+                            "description": "Eine detaillierte Stra\u00DFenkarte",
+                            "url": "http://services.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer",
+                            "type": "AGS_TILED",
+                            "title": "Stra\u00DFen",
+                            "layers": [
+                                {
+                                    "id": "0",
+                                    "title": "Stra\u00DFen"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "service_32645",
+                            "url": "http://services.conterra.de/arcgis/rest/services/training/stoerungen/MapServer",
+                            "type": "AGS_DYNAMIC",
+                            "title": "Stoerungen",
+                            "description": "Karte mit fiktiven St\u00F6rungsmeldungen f\u00FCr map.apps Trainings.",
+                            "layers": [
+                                {
+                                    "id": "0",
+                                    "title": "St\u00F6rungen",
+                                    "enabled": true
+                                },
+                                {
+                                    "id": "1",
+                                    "title": "Status",
+                                    "enabled": true
+                                }
+                            ],
+                            "options": {}
+                        },
+                        {
+                            "id": "service_32646",
+                            "url": "https://sampleserver6.arcgisonline.com/arcgis/rest/services/RedlandsEmergencyVehicles/MapServer",
+                            "type": "AGS_DYNAMIC",
+                            "title": "RedlandsEmergency",
+                            "description": "",
+                            "layers": [
+                                {
+                                    "id": "0",
+                                    "title": "Ambulances",
+                                    "enabled": false
+                                },
+                                {
+                                    "id": "0",
+                                    "title": "Police",
+                                    "enabled": true
+                                },
+                                {
+                                    "id": "0",
+                                    "title": "Fire",
+                                    "enabled": true
+                                }
+                            ],
+                            "options": {}
+                        },
+                        {
+                            "id": "service_32647",
+                            "url": "https://sampleserver6.arcgisonline.com/arcgis/rest/services/CommercialDamageAssessment/MapServer",
+                            "type": "AGS_DYNAMIC",
+                            "title": "CommercialDamageAssessment",
+                            "description": "",
+                            "layers": [
+                                {
+                                    "id": "0",
+                                    "title": "Damage to Commercial Buildings",
+                                    "enabled": false
+                                }
+                            ],
+                            "options": {}
+                        }
+                    ]
+                }
+            },
+            "enabled": true
+        },
+        "mapflow": {
+            "enabled": true
+        },
+        "maptip": {
+            "enabled": true
+        },
+        "mobiletoc": {
+            "enabled": true
+        },
+        "mobileview": {
+            "enabled": true
+        },
+        "notifier": {
+            "enabled": true
+        },
+        "parametermanager": {
+            "enabled": true
+        },
+        "selection": {
+            "SelectionAction": {
+                "autoDeactivateTool": true
+            },
+            "enabled": true
+        },
+        "splashscreen": {
+            "enabled": true
+        },
+        "templatelayout": {
+            "enabled": true
+        },
+        "templates": {
+            "TemplateModel": {
+                "_selectedTemplate": "seasons"
+            },
+            "TemplateSelector": {
+                "componentEnabled": false
+            },
+            "enabled": true
+        },
+        "themes": {
+            "ApplicationStyleWriter": {
+                "styles": ["${app}:app.css"]
+            },
+            "ThemeModel": {
+                "_selectedTheme": "everlasting"
+            },
+            "ThemeSelector": {
+                "componentEnabled": false
+            },
+            "enabled": true
+        },
+        "toolset": {
+            "ToolsetManager": {
+                "toolsets": [
+                    {
+                        "id": "dropdown1",
+                        "title": "Werkzeuge",
+                        "tools": [
+                            "analysisDistributionTool",
+                            "search_*"
+                        ],
+                        "container": "map",
+                        "__isDirty": true,
+                        "position": {
+                            "rel_t": 20,
+                            "rel_l": 20
+                        },
+                        "cssClass": "notitle",
+                        "windowType": "fixed",
+                        "tooltip": "Werkzeuge",
+                        "max_horizontal": 1
+                    }
+                ]
+            },
+            "enabled": true
+        },
+        "windowmanager": {
+            "enabled": true
+        }
     }
-  }
 }

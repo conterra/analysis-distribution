@@ -20,10 +20,10 @@ define([
     "dijit/layout/TabContainer",
     "./ChartingWidget"
 ], function (declare,
-             d_array,
-             ct_when,
-             TabContainer,
-             ChartingWidget) {
+        d_array,
+        ct_when,
+        TabContainer,
+        ChartingWidget) {
     return declare([], {
         _getMetadata: function () {
             var data = [];
@@ -50,7 +50,6 @@ define([
             var props = this._properties;
             var i18n = this._i18n.get();
             var tool = this._tool;
-            //var resultCenterDataModel = this._resultCenterDataModel;
             d_array.forEach(this.data || [], function (alias) {
                 var tab = new ChartingWidget({
                     props: props,
@@ -59,7 +58,6 @@ define([
                     mapState: mapState,
                     i18n: i18n,
                     tool: tool
-                    //resultCenterDataModel: resultCenterDataModel
                 });
                 if (tab) {
                     tabcontainer.addChild(tab);

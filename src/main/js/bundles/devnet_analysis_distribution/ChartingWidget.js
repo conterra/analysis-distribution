@@ -39,51 +39,46 @@ define([
     "./ChartingWidgetController",
     "dojo/dom-geometry"
 ], function (declare,
-             _Widget,
-             _TemplatedMixin,
-             _WidgetsInTemplateMixin,
-             templateStringContent,
-             BorderContainer,
-             ContentPane,
-             Switch,
-             Chart,
-             theme,
-             Pie,
-             Columns,
-             ClusteredColumns,
-             StackedColumns,
-             Markers,
-             Default,
-             Legend,
-             Tooltip,
-             MoveSlice,
-             Magnify,
-             Highlight,
-             ct_css,
-             ChartingWidgetController,
-             domGeometry) {
+        _Widget,
+        _TemplatedMixin,
+        _WidgetsInTemplateMixin,
+        templateStringContent,
+        BorderContainer,
+        ContentPane,
+        Switch,
+        Chart,
+        theme,
+        Pie,
+        Columns,
+        ClusteredColumns,
+        StackedColumns,
+        Markers,
+        Default,
+        Legend,
+        Tooltip,
+        MoveSlice,
+        Magnify,
+        Highlight,
+        ct_css,
+        ChartingWidgetController,
+        domGeometry) {
     return declare([_Widget, _TemplatedMixin,
         _WidgetsInTemplateMixin], {
         templateString: templateStringContent,
         legend: undefined,
         constructor: function (args) {
-            this.inherited(arguments);
-            var alias = this._alias = args.alias;
-            this._store = args.store;
-            var mapState = this._mapState = args.mapState;
-            var tool = args.tool;
-            this.connect(mapState, "onExtentChange", function () {
+        },
+        postCreate: function () {
+            this.connect(this.mapState, "onExtentChange", function () {
                 this._onRefresh();
             });
-            this.connect(tool, "onClick", function () {
+            this.connect(this.tool, "onClick", function () {
                 this._cwc.createChart(this._useExtent);
             });
             this._cwc = new ChartingWidgetController({
                 source: this
             });
-            this.set("title", alias);
-        },
-        postCreate: function () {
+            this.set("title", this.alias);
             this.inherited(arguments);
             var properties = this.props;
             this._chartType = properties.chartType;

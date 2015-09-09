@@ -1,0 +1,96 @@
+{
+    "Bundle-SymbolicName": "devnet_analysis_distribution",
+    "Bundle-Version": "1.0.0",
+    "Bundle-Name": "${bundleName}",
+    "Bundle-Description": "${bundleDescription}",
+    "Bundle-Vendor": "con terra GmbH",
+    "Product-Name": "map.apps Developer Network",
+    "Config-Bundle-Location": "/config",
+    "Require-Bundle": [
+        {
+            "name": "map"
+        },
+        {
+            "name": "resultcenter"
+        }
+    ],
+    "CSS-Themes-Extension": [
+        {
+            "name": "*",
+            "files": ["./styles/style.css"]
+        }
+    ],
+    "layout-widgets": [
+        {
+            "role": "tabWidget",
+            "window": {
+                "title": "${windowTitle}",
+                "marginBox": {
+                    "t": 50,
+                    "r": 20,
+                    "w": 450,
+                    "h": 620
+                },
+                "dockTool": "analysisDistributionTool",
+                "closable": true,
+                "minimizeOnClose": true,
+                "resizable": false
+            }
+        }
+    ],
+    "Components": [
+        {
+            "name": "TabWidgetFactory",
+            "provides": [
+                "dijit.Widget",
+                "ct.framework.api.EventHandler",
+                "devnet_analysis_distribution.TabWidgetFactory"
+            ],
+            "properties": {
+                "widgetRole": "tabWidget",
+                "storeId": "defineInAppJson",
+                "chartType": "column",
+                "useExtent": false,
+                "enableChartSwitch": true,
+                "enableExtentSwitch": true
+            },
+            "instanceFactory": true,
+            "immediate": true,
+            "references": [
+                {
+                    "name": "_store",
+                    "providing": "ct.api.Store",
+                    "filter": "(id={storeId})",
+                    "policy": "static"
+                },
+                {
+                    "name": "_mapState",
+                    "providing": "ct.mapping.map.MapState"
+                },
+                {
+                    "name": "_resultCenterDataModel",
+                    "providing": "ct.resultcenter.DataModel"
+                },
+                {
+                    "name": "_tool",
+                    "providing": "ct.tools.Tool",
+                    "filter": "(id=analysisDistributionTool)"
+                }
+            ]
+        },
+        {
+            "name": "${toolName}",
+            "impl": "ct/tools/Tool",
+            "provides": ["ct.tools.Tool"],
+            "propertiesConstructor": true,
+            "properties": {
+                "id": "analysisDistributionTool",
+                "toolRole": "toolset",
+                "title": "Analysis/Distribution Tool",
+                "tooltip": "${toolTooltip}",
+                "togglable": true,
+                "iconClass": "icon-chart-bar"
+            }
+        }
+    ]
+}

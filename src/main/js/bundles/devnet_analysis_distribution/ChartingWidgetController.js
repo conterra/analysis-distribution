@@ -38,8 +38,8 @@ define([
         createChart: function (extentStatus) {
             var cw = this.source;
             cw._setProcessing(true);
-            var a = cw.get("_alias");
-            var store = cw.get("_store");
+            var a = cw.get("alias");
+            var store = cw.get("store");
             var metadata = store.getMetadata();
 
             ct_when(metadata, function (mdata) {
@@ -88,7 +88,7 @@ define([
             }, this);
         },
         _getCurrentExtent: function () {
-            return this.source.get("_mapState").getExtent();
+            return this.source.get("mapState").getExtent();
         }
     });
 });
