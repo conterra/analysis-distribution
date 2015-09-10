@@ -70,11 +70,11 @@ define([
                     deferred = store.query(extentQuery, {fields: fields});
                 }
 
-                ct_when(deferred, function (feautures) {
+                ct_when(deferred, function (features) {
                     var tempCodedValues = d_array.map(codedValues, function (codedValue) {
                         return d_lang.mixin({count: 0}, codedValue);
                     });
-                    d_array.forEach(feautures, function (feature) {
+                    d_array.forEach(features, function (feature) {
                         var code = feature[fieldName];
                         var filteredArray = d_array.filter(tempCodedValues, function (codedValue) {
                             return codedValue.code === code;

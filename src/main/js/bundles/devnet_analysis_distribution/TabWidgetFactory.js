@@ -88,9 +88,6 @@ define([
                 children.set("_enableExtentSwitch", enableExtentSwitch);
                 children._onNewProperties();
             }, this);
-        },
-        _onWindowOpen: function (event) {
-            debugger;
         }
     });
 });
