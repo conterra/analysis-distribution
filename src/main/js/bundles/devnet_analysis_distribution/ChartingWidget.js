@@ -66,8 +66,6 @@ define([
         _WidgetsInTemplateMixin], {
         templateString: templateStringContent,
         legend: undefined,
-        constructor: function (args) {
-        },
         postCreate: function () {
             this.connect(this.mapState, "onExtentChange", function () {
                 this._onRefresh();

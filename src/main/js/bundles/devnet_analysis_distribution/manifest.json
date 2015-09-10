@@ -9,9 +9,6 @@
     "Require-Bundle": [
         {
             "name": "map"
-        },
-        {
-            "name": "resultcenter"
         }
     ],
     "CSS-Themes-Extension": [
@@ -43,8 +40,7 @@
             "name": "TabWidgetFactory",
             "provides": [
                 "dijit.Widget",
-                "ct.framework.api.EventHandler",
-                "devnet_analysis_distribution.TabWidgetFactory"
+                "ct.framework.api.EventHandler"
             ],
             "properties": {
                 "widgetRole": "tabWidget",
@@ -66,10 +62,6 @@
                 {
                     "name": "_mapState",
                     "providing": "ct.mapping.map.MapState"
-                },
-                {
-                    "name": "_resultCenterDataModel",
-                    "providing": "ct.resultcenter.DataModel"
                 },
                 {
                     "name": "_tool",
