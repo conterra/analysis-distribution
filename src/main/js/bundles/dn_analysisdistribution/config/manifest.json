@@ -1,6 +1,6 @@
 {
-    "Bundle-SymbolicName": "devnet_analysis_distribution-config",
-    "Bundle-Version": "1.0.0",
+    "Bundle-SymbolicName": "dn_analysisdistribution-config",
+    "Bundle-Version": "1.0.1",
     "Bundle-Name": "${bundleName}",
     "Bundle-Description": "${bundleDescription}",
     "Bundle-Vendor": "con terra GmbH",
@@ -16,7 +16,7 @@
             "provides": ["wizard.MenuEntry"],
             "propertiesConstructor": true,
             "properties": {
-                "parentNodeId" : "appBuilderToolsNode",
+                "parentNodeId": "appBuilderToolsNode",
                 "menuNode": {
                     "priority": 10,
                     "title": "${windowTitle}",
@@ -33,8 +33,8 @@
             "instanceFactory": true,
             "properties": {
                 "dataformFile": "resource('./DataForm.json')",
-                "bid": "devnet_analysis_distribution",
-                "pid": "devnet_analysis_distribution-TabWidgetFactory",
+                "bid": "dn_analysisdistribution",
+                "pid": "dn_analysisdistribution-TabWidgetFactory",
                 "id": "analysisDistributionBuilderWidget",
                 "defaultProperties": {
                     "storeId": "defineInAppJson",
@@ -59,7 +59,7 @@
             "properties": {
                 "useIn": ["dataform"],
                 "id": "storesStore01",
-                "data":[],
+                "data": [],
                 "metadata": {
                     "fields": [
                         {
@@ -73,8 +73,8 @@
             },
             "references": [{
                     "name": "data",
-                    "bind":"addStore",
-                    "unbind":"remove",
+                    "bind": "addStore",
+                    "unbind": "remove",
                     "providing": "ct.api.Store",
                     "cardinality": "1..n",
                     "filter": "(|(useIn=selection)(useIn=omnisearch))"

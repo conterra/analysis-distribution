@@ -2,7 +2,7 @@
     "properties": {
         "modifiedAt": 1437731876185,
         "templateId": "14EBF7D3E4D120D",
-        "id": "analysis_distribution_testapp",
+        "id": "analysisdistribution_testapp",
         "createdAt": 1437731756725,
         "modifiedBy": "admin",
         "editorState": "DRAFT",
@@ -20,7 +20,8 @@
         ],
         "styles": ["${app}:app.css"],
         "allowedBundles": [
-            "devnet_analysis_distribution",
+            "wizard",
+            "dn_analysisdistribution",
             "custominfo",
             "dataform",
             "parametermanager",
@@ -39,7 +40,7 @@
         ]
     },
     "bundles": {
-        "devnet_analysis_distribution": {
+        "dn_analysisdistribution": {
             "TabWidgetFactory": {
                 "storeId": "auskunftStore",
                 "chartType": "column",

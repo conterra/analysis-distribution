@@ -1,6 +1,6 @@
 {
-    "Bundle-SymbolicName": "devnet_analysis_distribution",
-    "Bundle-Version": "1.0.0",
+    "Bundle-SymbolicName": "dn_analysisdistribution",
+    "Bundle-Version": "1.0.1",
     "Bundle-Name": "${bundleName}",
     "Bundle-Description": "${bundleDescription}",
     "Bundle-Vendor": "con terra GmbH",
