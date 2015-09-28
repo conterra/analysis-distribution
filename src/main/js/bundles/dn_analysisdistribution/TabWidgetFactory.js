@@ -66,13 +66,6 @@ define([
             }, this);
             return tabcontainer;
         },
-        /*destroyInstance: function (tabcontainer) {
-         // tabs are no ComponentFactories, so we have to preserve the widgets from destruction
-         d_array.forEach(tabcontainer.getChildren(), function (tab) {
-         tabcontainer.removeChild(tab);
-         });
-         tabcontainer.destroyRecursive();
-         },*/
         modified: function () {
             var props = this._properties;
             var storeId = props.storeId;

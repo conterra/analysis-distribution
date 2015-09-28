@@ -3,12 +3,12 @@
         <div data-dojo-type="dijit/layout/ContentPane"  data-dojo-props="region: 'top'">
             <div class="container" data-dojo-attach-point="chartSwitchNode">
                 <span>${i18n.column}</span>
-                <div class="chartSwitch" data-dojo-type="dojox/mobile/Switch" data-dojo-props="value:'off',leftLabel:'${i18n.null}',rightLabel:'${i18n.null}'" data-dojo-attach-point="_chartSwitch" data-dojo-attach-event="onClick:_onClick1" style="width: 80px;"></div>
+                <div class="chartSwitch" data-dojo-type="dojox/mobile/Switch" data-dojo-props="value:'off',leftLabel:'${i18n.null}',rightLabel:'${i18n.null}'" data-dojo-attach-point="_chartSwitch" data-dojo-attach-event="onClick:_onChangeChartType" style="width: 80px;"></div>
                 <span>${i18n.pie}</span>
             </div>
             <div class="container" data-dojo-attach-point="extentSwitchNode">
                 <span>${i18n.extent}</span>
-                <div class="extentSwitch" data-dojo-type="dojox/mobile/Switch" data-dojo-props="value:'off',leftLabel:'${i18n.on}',rightLabel:'${i18n.off}'" data-dojo-attach-point="_extentSwitch" data-dojo-attach-event="onClick:_onClick2" style="width: 80px;"></div>
+                <div class="extentSwitch" data-dojo-type="dojox/mobile/Switch" data-dojo-props="value:'off',leftLabel:'${i18n.on}',rightLabel:'${i18n.off}'" data-dojo-attach-point="_extentSwitch" data-dojo-attach-event="onClick:_onChangeExtentSetting" style="width: 80px;"></div>
             </div>
             <div data-dojo-attach-point="legendNode"></div>
         </div>

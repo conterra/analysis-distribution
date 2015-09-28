@@ -123,8 +123,12 @@ define([
                 vertical: true,
                 fixLower: "major",
                 fixUpper: "major",
-                majorTickStep: 1,
-                minorTicks: false
+                majorTickStep: 10,
+                minorTickStep: 1,
+                minorTicks: true,
+                microTicks: false,
+                natural: true,
+                fixed: true
             });
             for (var i = 0; i < data.length; i++) {
                 var s = data[i].name;
@@ -213,7 +217,7 @@ define([
             }
             this._cwc.createChart(this._useExtent);
         },
-        _onClick1: function () {
+        _onChangeChartType: function () {
             if (this._chartSwitch.get("value") === "on") {
                 this._chartType = "column";
             } else {
@@ -221,7 +225,7 @@ define([
             }
             this._onRefresh();
         },
-        _onClick2: function () {
+        _onChangeExtentSetting: function () {
             if (this._extentSwitch.get("value") === "on") {
                 this._useExtent = false;
             } else {
