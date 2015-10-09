@@ -219,17 +219,17 @@ define([
         },
         _onChangeChartType: function () {
             if (this._chartSwitch.get("value") === "on") {
-                this._chartType = "column";
-            } else {
                 this._chartType = "pie";
+            } else {
+                this._chartType = "column";
             }
             this._onRefresh();
         },
         _onChangeExtentSetting: function () {
             if (this._extentSwitch.get("value") === "on") {
-                this._useExtent = false;
-            } else {
                 this._useExtent = true;
+            } else {
+                this._useExtent = false;
             }
             this._onRefresh();
         },
