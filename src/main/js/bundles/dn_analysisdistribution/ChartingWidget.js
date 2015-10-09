@@ -35,6 +35,7 @@ define([
     "dojox/charting/action2d/MoveSlice",
     "dojox/charting/action2d/Magnify",
     "dojox/charting/action2d/Highlight",
+    "dojo/fx/easing",
     "ct/util/css",
     "./ChartingWidgetController",
     "dojo/dom-geometry"
@@ -59,6 +60,7 @@ define([
         MoveSlice,
         Magnify,
         Highlight,
+        d_easing,
         ct_css,
         ChartingWidgetController,
         domGeometry) {
@@ -139,7 +141,8 @@ define([
             columnChart.addPlot("default", {
                 type: ClusteredColumns,
                 markers: false,
-                gap: 5
+                gap: 5,
+                animate: {duration: 1000, easing: d_easing.quadOut}
             });
             new Tooltip(columnChart, "default");
             new Highlight(columnChart, "default");
@@ -168,7 +171,8 @@ define([
                 labels: true,
                 labelOffset: -20,
                 radius: 600,
-                fontColor: "black"
+                fontColor: "black",
+                animate: {duration: 1000}
             });
             var a = [];
             for (var i = 0; i < data.length; i++) {
