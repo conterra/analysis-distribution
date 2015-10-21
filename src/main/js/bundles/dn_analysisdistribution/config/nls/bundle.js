@@ -24,6 +24,7 @@ define({
                 pie: "Pie",
                 all: "All",
                 extent: "Extent",
+                spatialOperator: "Spatial operator",
                 defaultChartType: "Default Chart Type",
                 useExtent: "Use Extent",
                 enableChartSwitch:  "Enable Chart Switch",

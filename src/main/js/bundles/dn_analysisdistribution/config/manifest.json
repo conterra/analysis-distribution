@@ -39,6 +39,7 @@
                 "defaultProperties": {
                     "storeId": "defineInAppJson",
                     "chartType": "column",
+                    "spatialOperator": "$intersects",
                     "useExtent": false,
                     "enableChartSwitch": true,
                     "enableExtentSwitch": true

@@ -23,23 +23,24 @@ define([
     "dojo/DeferredList",
     "ct/_lang"
 ], function (declare,
-             d_array,
-             d_lang,
-             _Connect,
-             Filter,
-             ct_when,
-             DeferredList,
-             ct_lang) {
+        d_array,
+        d_lang,
+        _Connect,
+        Filter,
+        ct_when,
+        DeferredList,
+        ct_lang) {
     return declare([_Connect], {
         constructor: function (args) {
             this.source = args.source;
             this.inherited(arguments);
         },
-        createChart: function (extentStatus) {
+        createChart: function (extentStatus, spatialOperator) {
             var cw = this.source;
             cw._setProcessing(true);
             var a = cw.get("alias");
             var store = cw.get("store");
+
             var metadata = store.getMetadata();
 
             ct_when(metadata, function (mdata) {
@@ -56,11 +57,9 @@ define([
                 }
 
                 var extent = this._getCurrentExtent();
-                var extentQuery = {
-                    geometry: {
-                        $contains: extent
-                    }
-                };
+                var extentQuery = {};
+                extentQuery["geometry"] = {};
+                extentQuery.geometry[spatialOperator] = extent;
                 var fields = {geometry: 0};
                 fields[fieldName] = 1;
                 var deferred;
@@ -82,13 +81,37 @@ define([
                         var codedValue = filteredArray[0];
                         codedValue && codedValue.count++;
                     });
-                    cw.addChart(tempCodedValues);
+
+                    if (!this._isEquivalent(cw.data, tempCodedValues)) {
+                        cw.renderChart(tempCodedValues);
+                    }
+
                     cw._setProcessing(false);
-                });
+                }, this);
             }, this);
         },
         _getCurrentExtent: function () {
             return this.source.get("mapState").getExtent();
+        },
+        _isEquivalent: function (a, b) {
+            if (a === undefined || b === undefined) {
+                return false;
+            }
+            if (a.length !== b.length) {
+                return false;
+            }
+            for (var i = 0; i < a.length; i++) {
+                if (a[i].count !== b[i].count) {
+                    return false;
+                }
+                if (a[i].name !== b[i].name) {
+                    return false;
+                }
+                if (a[i].code !== b[i].code) {
+                    return false;
+                }
+            }
+            return true;
         }
     });
 });

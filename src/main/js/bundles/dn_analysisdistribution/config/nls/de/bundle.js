@@ -22,9 +22,10 @@ define({
     pie: "Tortendiagramm",
     all: "Alle",
     extent: "Auschnitt",
+    spatialOperator: "R\u00e4umlicher Operator",
     defaultChartType: "Standard Diagrammtyp",
     useExtent: "Aktuellen Ausschnitt verwenden",
-    enableChartSwitch: "Diagrammtyp-Änderung zulassen",
+    enableChartSwitch: "Diagrammtyp-\u00c4nderung zulassen",
     enableExtentSwitch: "Verwendung des aktuellen Ausschnitts zulassen",
     store: "Store"
 });

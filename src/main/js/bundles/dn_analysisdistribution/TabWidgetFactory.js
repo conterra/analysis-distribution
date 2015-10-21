@@ -25,32 +25,49 @@ define([
         TabContainer,
         ChartingWidget) {
     return declare([], {
-        _getMetadata: function () {
-            var data = [];
-            var metadata = this._store.getMetadata();
-            ct_when(metadata, function (mdata) {
-                var fields = mdata.fields;
-                for (var i = 0; i < fields.length; i++) {
-                    if (fields[i].domain) {
-                        data.push(fields[i].alias);
-                    }
-                }
-            });
-            return data;
+        createInstance: function () {
+            var tabcontainer = this.tabcontainer = new TabContainer();
+            //var storeId = this._properties.storeId;
+            //var store = this._getSelectedStore(storeId);
+            var store = this._store;
+            if (store !== undefined)
+                this._addTabs(store);
+            return tabcontainer;
+        },
+        modified: function (evt) {
+            debugger
+            var props = this._properties;
+            var storeId = props.storeId;
+            var store = this._getSelectedStore(storeId);
+            var chartType = props.chartType;
+            var useExtent = props.useExtent;
+            var enableChartSwitch = props.enableChartSwitch;
+            var enableExtentSwitch = props.enableExtentSwitch;
+            var spatialOperator = props.spatialOperator;
+            d_array.forEach(this.tabcontainer.getChildren(), function (children) {
+                children.set("store", store);
+                children.set("_chartType", chartType);
+                children.set("_useExtent", useExtent);
+                children.set("_enableChartSwitch", enableChartSwitch);
+                children.set("_enableExtentSwitch", enableExtentSwitch);
+                children.set("_spatialOperator", spatialOperator);
+                children._onNewProperties();
+            }, this);
         },
         setStore: function (store, props) {
             this._store = store;
         },
-        createInstance: function () {
-            this.data = this._getMetadata();
-            var tabcontainer = this.tabcontainer = new TabContainer();
-            var tabs = this.tabs;
-            var store = this._store;
+        /*addStores: function (store) {
+         if (store.id === this._properties.storeId)
+         this._addTabs(store);
+         },*/
+        _addTabs: function (store) {
             var mapState = this._mapState;
             var props = this._properties;
             var i18n = this._i18n.get();
             var tool = this._tool;
-            d_array.forEach(this.data || [], function (alias) {
+            var data = this.data = this._getMetadata(store);
+            d_array.forEach(data || [], function (alias) {
                 var tab = new ChartingWidget({
                     props: props,
                     alias: alias,
@@ -60,27 +77,36 @@ define([
                     tool: tool
                 });
                 if (tab) {
-                    tabcontainer.addChild(tab);
+                    if (!this.tabcontainer) {
+                        this.tabcontainer = new TabContainer();
+                    }
+                    this.tabcontainer.addChild(tab);
                     tab.startup();
                 }
             }, this);
-            return tabcontainer;
         },
-        modified: function () {
-            var props = this._properties;
-            var storeId = props.storeId;
-            var chartType = props.chartType;
-            var useExtent = props.useExtent;
-            var enableChartSwitch = props.enableChartSwitch;
-            var enableExtentSwitch = props.enableExtentSwitch;
-            d_array.forEach(this.tabcontainer.getChildren(), function (children) {
-                //children.set("_storeId", storeId);
-                children.set("_chartType", chartType);
-                children.set("_useExtent", useExtent);
-                children.set("_enableChartSwitch", enableChartSwitch);
-                children.set("_enableExtentSwitch", enableExtentSwitch);
-                children._onNewProperties();
+        _getSelectedStore: function (id) {
+            var s;
+            var agsstores = this.stores;
+            d_array.forEach(agsstores, function (store) {
+                if (id === store.id) {
+                    s = store;
+                }
             }, this);
+            return s;
+        },
+        _getMetadata: function (store) {
+            var data = [];
+            var metadata = store.getMetadata();
+            ct_when(metadata, function (mdata) {
+                var fields = mdata.fields;
+                for (var i = 0; i < fields.length; i++) {
+                    if (fields[i].domain) {
+                        data.push(fields[i].alias);
+                    }
+                }
+            });
+            return data;
         }
     });
 });

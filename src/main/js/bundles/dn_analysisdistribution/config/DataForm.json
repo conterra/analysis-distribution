@@ -9,7 +9,10 @@
             "label": "${store}",
             "searchAttribute": "title",
             "labelAttribute": "${title}",
-            "store": "storesStore01"
+            "store": "storesStore01",
+            "size": {
+                "w": 150
+            }
         },
         {
             "type": "selectbox",
@@ -27,7 +30,26 @@
             ],
             "max": 2,
             "size": {
-                "w": 100
+                "w": 150
+            }
+        },
+        {
+            "type": "selectbox",
+            "field": "spatialOperator",
+            "label": "${spatialOperator}",
+            "searchAttribute": "name",
+            "labelAttribute": "${name}",
+            "values": [{
+                    "name": "intersects",
+                    "value": "$intersects"
+                }, {
+                    "name": "contains",
+                    "value": "$contains"
+                }
+            ],
+            "max": 2,
+            "size": {
+                "w": 150
             }
         },
         {

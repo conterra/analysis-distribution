@@ -70,12 +70,12 @@ define([
         legend: undefined,
         postCreate: function () {
             this.connect(this.mapState, "onExtentChange", function () {
-                this._onRefresh();
+                this._onNewData();
             });
             this.connect(this.tool, "onClick", function () {
-                this._cwc.createChart(this._useExtent);
+                this._chartingWidgetController.createChart(this._useExtent, this._spatialOperator);
             });
-            this._cwc = new ChartingWidgetController({
+            this._chartingWidgetController = new ChartingWidgetController({
                 source: this
             });
             this.set("title", this.alias);
@@ -85,6 +85,7 @@ define([
             this._useExtent = properties.useExtent;
             this._enableChartSwitch = properties.enableChartSwitch;
             this._enableExtentSwitch = properties.enableExtentSwitch;
+            this._spatialOperator = properties.spatialOperator;
 
             var chartSwitch = this._chartSwitch;
             ct_css.switchHidden(this.chartSwitchNode, !this._enableChartSwitch);
@@ -102,12 +103,13 @@ define([
                 extentSwitch.set("value", "on");
             }
             this._chart = new Chart(this.chartNode);
-            this._cwc.createChart();
+            this.data;
         },
         resize: function (dims) {
             this._container.resize(dims);
         },
-        addChart: function (data) {
+        renderChart: function (data) {
+            this.data = data;
             if (this._chartType === "column") {
                 this._renderColumnChart(data);
             } else {
@@ -201,7 +203,12 @@ define([
         },
         _onRefresh: function () {
             if (this.tool.active) {
-                this._cwc.createChart(this._useExtent);
+                this.renderChart(this.data);
+            }
+        },
+        _onNewData: function () {
+            if (this.tool.active) {
+                this._chartingWidgetController.createChart(this._useExtent, this._spatialOperator);
             }
         },
         _onNewProperties: function () {
@@ -219,7 +226,7 @@ define([
             } else if (this._useExtent === true) {
                 extentSwitch.set("value", "on");
             }
-            this._cwc.createChart(this._useExtent);
+            this._onRefresh();
         },
         _onChangeChartType: function () {
             if (this._chartSwitch.get("value") === "on") {
