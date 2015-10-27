@@ -27,5 +27,6 @@ define({
     useExtent: "Aktuellen Ausschnitt verwenden",
     enableChartSwitch: "Diagrammtyp-\u00c4nderung zulassen",
     enableExtentSwitch: "Verwendung des aktuellen Ausschnitts zulassen",
-    store: "Store"
+    store: "Store",
+    enableStoreSelect: "Store-\u00c4nderung zulassen"
 });

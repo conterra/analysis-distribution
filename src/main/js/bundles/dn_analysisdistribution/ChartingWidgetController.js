@@ -33,11 +33,12 @@ define([
     return declare([_Connect], {
         constructor: function (args) {
             this.source = args.source;
+            this.tool = args.tool;
             this.inherited(arguments);
         },
         createChart: function (extentStatus, spatialOperator) {
             var cw = this.source;
-            cw._setProcessing(true);
+            this._setProcessing(true);
             var a = cw.get("alias");
             var store = cw.get("store");
 
@@ -86,7 +87,7 @@ define([
                         cw.renderChart(tempCodedValues);
                     }
 
-                    cw._setProcessing(false);
+                    this._setProcessing(false);
                 }, this);
             }, this);
         },
@@ -112,6 +113,12 @@ define([
                 }
             }
             return true;
+        },
+        _setProcessing: function (processing) {
+            var tool = this.tool;
+            if (tool) {
+                tool.set("processing", processing);
+            }
         }
     });
 });

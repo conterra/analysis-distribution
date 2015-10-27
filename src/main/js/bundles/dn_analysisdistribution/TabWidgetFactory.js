@@ -17,50 +17,73 @@ define([
     "dojo/_base/declare",
     "dojo/_base/array",
     "ct/_when",
+    "ct/util/css",
     "dijit/layout/TabContainer",
-    "./ChartingWidget"
+    "./ChartingWidget",
+    "./Widget"
 ], function (declare,
         d_array,
         ct_when,
+        ct_css,
         TabContainer,
-        ChartingWidget) {
+        ChartingWidget,
+        Widget) {
     return declare([], {
         createInstance: function () {
+            this.inherited(arguments);
+            return this.widget;
+        },
+        activate: function () {
+            this.inherited(arguments);
+            var props = this._properties;
+            var stores = this._stores;
+            var storeId = props.storeId;
+            var widget = this.widget = new Widget({stores: stores, storeId: storeId, source: this});
+            ct_css.switchHidden(widget.filteringNode, !props.enableStoreSelect);
+            widget.resize();
             var tabcontainer = this.tabcontainer = new TabContainer();
-            //var storeId = this._properties.storeId;
-            //var store = this._getSelectedStore(storeId);
-            var store = this._store;
+            //var store = this._store;
+            var store = this._getSelectedStore(storeId);
             if (store !== undefined)
                 this._addTabs(store);
-            return tabcontainer;
+            widget.addTabContainer(tabcontainer);
         },
-        modified: function (evt) {
-            debugger
+        modified: function () {
             var props = this._properties;
-            var storeId = props.storeId;
-            var store = this._getSelectedStore(storeId);
             var chartType = props.chartType;
             var useExtent = props.useExtent;
             var enableChartSwitch = props.enableChartSwitch;
             var enableExtentSwitch = props.enableExtentSwitch;
             var spatialOperator = props.spatialOperator;
+            var enableStoreSelect = props.enableStoreSelect;
+            ct_css.switchHidden(this.widget.filteringNode, !enableStoreSelect);
             d_array.forEach(this.tabcontainer.getChildren(), function (children) {
-                children.set("store", store);
                 children.set("_chartType", chartType);
                 children.set("_useExtent", useExtent);
                 children.set("_enableChartSwitch", enableChartSwitch);
                 children.set("_enableExtentSwitch", enableExtentSwitch);
                 children.set("_spatialOperator", spatialOperator);
                 children._onNewProperties();
+                children.resize();
             }, this);
+            this.changeStore(props.storeId);
+            this.widget.setSelectedStore(props.storeId);
         },
-        setStore: function (store, props) {
+        setStore: function (store) {
             this._store = store;
         },
-        /*addStores: function (store) {
-         if (store.id === this._properties.storeId)
-         this._addTabs(store);
-         },*/
+        changeStore: function (storeId) {
+            if (this.tabcontainer) {
+                d_array.forEach(this.tabcontainer.getChildren(), function (children) {
+                    this.tabcontainer.removeChild(children);
+                }, this);
+                var store = this._getSelectedStore(storeId);
+                this._addTabs(store);
+                d_array.forEach(this.tabcontainer.getChildren(), function (children) {
+                    children._onNewData();
+                }, this);
+            }
+        },
         _addTabs: function (store) {
             var mapState = this._mapState;
             var props = this._properties;
@@ -85,16 +108,6 @@ define([
                 }
             }, this);
         },
-        _getSelectedStore: function (id) {
-            var s;
-            var agsstores = this.stores;
-            d_array.forEach(agsstores, function (store) {
-                if (id === store.id) {
-                    s = store;
-                }
-            }, this);
-            return s;
-        },
         _getMetadata: function (store) {
             var data = [];
             var metadata = store.getMetadata();
@@ -107,6 +120,15 @@ define([
                 }
             });
             return data;
+        },
+        _getSelectedStore: function (id) {
+            var s;
+            d_array.forEach(this._stores, function (store) {
+                if (id === store.id) {
+                    s = store;
+                }
+            }, this);
+            return s;
         }
     });
 });

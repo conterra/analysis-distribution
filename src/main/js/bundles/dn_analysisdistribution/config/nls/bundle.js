@@ -25,11 +25,12 @@ define({
                 all: "All",
                 extent: "Extent",
                 spatialOperator: "Spatial operator",
-                defaultChartType: "Default Chart Type",
-                useExtent: "Use Extent",
-                enableChartSwitch:  "Enable Chart Switch",
-                enableExtentSwitch: "Enable Extent Switch",
-                store: "Store"
+                defaultChartType: "Default chart type",
+                useExtent: "Use extent",
+                enableChartSwitch:  "Enable chart switch",
+                enableExtentSwitch: "Enable extent switch",
+                store: "Store",
+                enableStoreSelect: "Enable store select"
             },
     de: true
 });

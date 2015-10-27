@@ -69,14 +69,16 @@ define([
         templateString: templateStringContent,
         legend: undefined,
         postCreate: function () {
+            var tool = this.tool;
+            this._chartingWidgetController = new ChartingWidgetController({
+                source: this,
+                tool: tool
+            });
             this.connect(this.mapState, "onExtentChange", function () {
                 this._onNewData();
             });
-            this.connect(this.tool, "onClick", function () {
+            this.connect(tool, "onClick", function () {
                 this._chartingWidgetController.createChart(this._useExtent, this._spatialOperator);
-            });
-            this._chartingWidgetController = new ChartingWidgetController({
-                source: this
             });
             this.set("title", this.alias);
             this.inherited(arguments);
@@ -242,13 +244,7 @@ define([
             } else {
                 this._useExtent = false;
             }
-            this._onRefresh();
-        },
-        _setProcessing: function (processing) {
-            var tool = this.tool;
-            if (tool) {
-                tool.set("processing", processing);
-            }
+            this._onNewData();
         }
     });
 });

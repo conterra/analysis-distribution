@@ -17,6 +17,7 @@ define([
     ".",
     "./TabWidgetFactory",
     "./ChartingWidgetController",
+    "./Widget",
     "./ChartingWidget",
     "ct/tools/Tool"
 ], {});

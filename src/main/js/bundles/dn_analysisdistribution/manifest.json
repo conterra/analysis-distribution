@@ -9,6 +9,9 @@
     "Require-Bundle": [
         {
             "name": "map"
+        },
+        {
+            "name": "agssearch"
         }
     ],
     "CSS-Themes-Extension": [
@@ -45,6 +48,7 @@
             "properties": {
                 "widgetRole": "tabWidget",
                 "storeId": "defineInAppJson",
+                "enableStoreSelect": true,
                 "chartType": "column",
                 "spatialOperator": "$intersects",
                 "useExtent": false,
@@ -55,11 +59,17 @@
             "immediate": true,
             "references": [
                 {
+                    "name": "_stores",
+                    "providing": "ct.api.Store",
+                    "cardinality": "1..n",
+                    "filter": "(useIn=selection)"
+                },
+                /*{
                     "name": "_store",
                     "providing": "ct.api.Store",
                     "filter": "(id={storeId})",
                     "policy": "static"
-                },
+                },*/
                 {
                     "name": "_mapState",
                     "providing": "ct.mapping.map.MapState",
@@ -69,11 +79,6 @@
                     "name": "_tool",
                     "providing": "ct.tools.Tool",
                     "filter": "(id=analysisDistributionTool)"
-                },
-                {
-                    "name": "stores",
-                    "providing": "ct.api.Store",
-                    "cardinality": "0..n"
                 }
             ]
         },

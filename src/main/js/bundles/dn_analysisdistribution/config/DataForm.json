@@ -15,6 +15,11 @@
             }
         },
         {
+            "type": "checkbox",
+            "label": "${enableStoreSelect}",
+            "field": "enableStoreSelect"
+        },
+        {
             "type": "selectbox",
             "field": "chartType",
             "label": "${defaultChartType}",

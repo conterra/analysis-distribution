@@ -38,6 +38,7 @@
                 "id": "analysisDistributionBuilderWidget",
                 "defaultProperties": {
                     "storeId": "defineInAppJson",
+                    "enableStoreSelect": true,
                     "chartType": "column",
                     "spatialOperator": "$intersects",
                     "useExtent": false,
