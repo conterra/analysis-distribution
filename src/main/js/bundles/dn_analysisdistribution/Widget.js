@@ -66,14 +66,14 @@ define([
             domConstruct.place(tabContainer.domNode, this._tabNode, "replace");
         },
         _init: function () {
-            var store = new Memory({
+            var storesStore = new Memory({
                 data: this.storeData
             });
             var filteringSelect = this._filteringSelect = new FilteringSelect({
                 name: "stores",
                 value: this.storeId,
-                store: store,
-                searchAttr: "name",
+                store: storesStore,
+                searchAttr: "label",
                 style: "width: 155px;",
                 maxHeight: this.maxComboBoxHeight
             }, this._filteringSelectNode);
@@ -89,7 +89,7 @@ define([
                 return d_array.map(metadata, function (metadata, index) {
                     var id = stores[index].id;
                     var title = metadata.title || id;
-                    return {name: title, id: id};
+                    return {label: title, id: id};
                 });
             });
         },

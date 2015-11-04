@@ -36,17 +36,18 @@ define([
         activate: function () {
             this.inherited(arguments);
             var props = this._properties;
-            var stores = this._stores;
+            this.stores = this._stores;
+            var stores = this.stores;
             var storeId = props.storeId;
             var widget = this.widget = new Widget({stores: stores, storeId: storeId, source: this});
             ct_css.switchHidden(widget.filteringNode, !props.enableStoreSelect);
-            widget.resize();
             var tabcontainer = this.tabcontainer = new TabContainer();
             //var store = this._store;
             var store = this._getSelectedStore(storeId);
             if (store !== undefined)
                 this._addTabs(store);
             widget.addTabContainer(tabcontainer);
+            widget.resize();
         },
         modified: function () {
             var props = this._properties;
@@ -68,9 +69,6 @@ define([
             }, this);
             this.changeStore(props.storeId);
             this.widget.setSelectedStore(props.storeId);
-        },
-        setStore: function (store) {
-            this._store = store;
         },
         changeStore: function (storeId) {
             if (this.tabcontainer) {
@@ -123,12 +121,61 @@ define([
         },
         _getSelectedStore: function (id) {
             var s;
-            d_array.forEach(this._stores, function (store) {
+            d_array.forEach(this.stores, function (store) {
                 if (id === store.id) {
                     s = store;
                 }
             }, this);
             return s;
+        },
+        addStores: function (store, serviceproperties) {
+            // filter incoming stores for configured storeid-array
+            var index = d_array.indexOf(this.storeIds, serviceproperties.id);
+            if (index > -1) {
+                // merge store and its own properties
+                store.serviceproperties = serviceproperties;
+                this.stores.push(store);
+                if (this._widget) {
+                    this._widget._filteringSelect.addOption({
+                        name: store.serviceproperties.title,
+                        id: store.serviceproperties.id
+                    });
+                } else {
+                    // if widget has not been initialized yet we store all options
+                    this.selectionOptions = [];
+                    d_array.forEach(this.stores, function (store) {
+                        var option = {
+                            label: store.serviceproperties.title,
+                            value: store.serviceproperties.id
+                        };
+                        this.selectionOptions.push(option);
+                    }, this);
+                }
+            }
+        },
+        removeStores: function (store, serviceproperties) {
+            // filter removed stores for configured storeid-array
+            var index = d_array.indexOf(this.stores, store);
+            if (index > -1) {
+                // remove store from array
+                this.stores = d_array.filter(this.stores, function (item) {
+                    return item.serviceproperties.id !== serviceproperties.id;
+                });
+                // remove store from widget
+                if (this._srWidget) {
+                    this._srWidget.storeSelect.removeOption(serviceproperties.id);
+                } else {
+                    // if widget has not been initialized yet we store all options
+                    this.selectionOptions = [];
+                    d_array.forEach(this.stores, function (store) {
+                        var option = {
+                            label: store.serviceproperties.title,
+                            value: store.serviceproperties.id
+                        };
+                        this.selectionOptions.push(option);
+                    }, this);
+                }
+            }
         }
     });
 });

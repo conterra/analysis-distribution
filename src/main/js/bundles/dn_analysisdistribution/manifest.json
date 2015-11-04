@@ -22,7 +22,7 @@
     ],
     "layout-widgets": [
         {
-            "role": "tabWidget",
+            "role": "widget",
             "window": {
                 "title": "${windowTitle}",
                 "marginBox": {
@@ -40,13 +40,13 @@
     ],
     "Components": [
         {
-            "name": "TabWidgetFactory",
+            "name": "WidgetFactory",
             "provides": [
                 "dijit.Widget",
                 "ct.framework.api.EventHandler"
             ],
             "properties": {
-                "widgetRole": "tabWidget",
+                "widgetRole": "widget",
                 "storeId": "defineInAppJson",
                 "enableStoreSelect": true,
                 "chartType": "column",

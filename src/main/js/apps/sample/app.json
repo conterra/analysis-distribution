@@ -27,7 +27,7 @@
     },
     "bundles": {
         "dn_analysisdistribution": {
-            "TabWidgetFactory": {
+            "WidgetFactory": {
                 "storeId": "auskunftStore",
                 "chartType": "column",
                 "useExtent": false

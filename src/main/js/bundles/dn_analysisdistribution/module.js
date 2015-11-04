@@ -15,7 +15,7 @@
  */
 define([
     ".",
-    "./TabWidgetFactory",
+    "./WidgetFactory",
     "./ChartingWidgetController",
     "./Widget",
     "./ChartingWidget",
