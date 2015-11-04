@@ -1,17 +1,6 @@
 {
     "properties": {
-        "modifiedAt": 1437731876185,
-        "templateId": "14EBF7D3E4D120D",
-        "id": "analysisdistribution_testapp",
-        "createdAt": 1437731756725,
-        "modifiedBy": "admin",
-        "editorState": "DRAFT",
-        "thumbnailFile": "",
-        "templateFile": "",
-        "description": "",
-        "title": "Analysis / Distribution Sample",
-        "createdBy": "admin",
-        "optimized": true
+        "title": "Analysis / Distribution Sample"
     },
     "load": {
         "bundleLocations": ["localbundles", "bundles"],
