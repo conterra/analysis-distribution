@@ -51,7 +51,7 @@ define([
         templateString: templateStringContent,
         postCreate: function () {
             this.maxComboBoxHeight = 160;
-            var storeData = this.storeData = this._getStoreData(this.stores);
+            var storeData = this.storeData = this._getStoreData(this.source.stores);
             return ct_when(storeData, function (storeData) {
                 this.storeData = storeData;
                 this._init();
@@ -65,13 +65,23 @@ define([
         addTabContainer: function (tabContainer) {
             domConstruct.place(tabContainer.domNode, this._tabNode, "replace");
         },
+        updateStores: function () {
+            var storeData = this.storeData = this._getStoreData(this.source.stores);
+            return ct_when(storeData, function (storeData) {
+                this.storeData = storeData;
+                var storesStore = new Memory({
+                    data: this.storeData
+                });
+                this._filteringSelect.set("store", storesStore);
+            }, this);
+        },
         _init: function () {
             var storesStore = new Memory({
                 data: this.storeData
             });
             var filteringSelect = this._filteringSelect = new FilteringSelect({
                 name: "stores",
-                value: this.storeId,
+                value: this.source.storeId,
                 store: storesStore,
                 searchAttr: "label",
                 style: "width: 155px;",
@@ -93,8 +103,11 @@ define([
                 });
             });
         },
-        setSelectedStore: function(storeId) {
+        setSelectedStore: function (storeId) {
             this._filteringSelect.set("value", storeId);
+        },
+        getSelectedStore: function () {
+            return this._filteringSelect.get("value");
         }
     });
 });

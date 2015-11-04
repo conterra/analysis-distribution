@@ -120,88 +120,92 @@ define([
             this.resize();
         },
         _renderColumnChart: function (data) {
-            this._chart.removePlot("default");
-            var columnChart = this._chart;
-            columnChart.setTheme(theme);
-            columnChart.addAxis("x", {type: 'Invisible'});
-            columnChart.addAxis("y", {
-                min: 0,
-                vertical: true,
-                fixLower: "major",
-                fixUpper: "major",
-                majorTickStep: 10,
-                minorTickStep: 1,
-                minorTicks: true,
-                microTicks: false,
-                natural: true,
-                fixed: true
-            });
-            for (var i = 0; i < data.length; i++) {
-                var s = data[i].name;
-                var tooltip = data[i].name + " [" + data[i].count + "]";
-                var d1 = [{x: 0, y: data[i].count, tooltip: tooltip}];
-                columnChart.addSeries(s, d1);
-            }
-            columnChart.addPlot("default", {
-                type: ClusteredColumns,
-                markers: false,
-                gap: 5,
-                animate: {duration: 1000, easing: d_easing.quadOut}
-            });
-            new Tooltip(columnChart, "default");
-            new Highlight(columnChart, "default");
-            columnChart.render();
+            if (this._chart) {
+                this._chart.removePlot("default");
+                var columnChart = this._chart;
+                columnChart.setTheme(theme);
+                columnChart.addAxis("x", {type: 'Invisible'});
+                columnChart.addAxis("y", {
+                    min: 0,
+                    vertical: true,
+                    fixLower: "major",
+                    fixUpper: "major",
+                    majorTickStep: 10,
+                    minorTickStep: 1,
+                    minorTicks: true,
+                    microTicks: false,
+                    natural: true,
+                    fixed: true
+                });
+                for (var i = 0; i < data.length; i++) {
+                    var s = data[i].name;
+                    var tooltip = data[i].name + " [" + data[i].count + "]";
+                    var d1 = [{x: 0, y: data[i].count, tooltip: tooltip}];
+                    columnChart.addSeries(s, d1);
+                }
+                columnChart.addPlot("default", {
+                    type: ClusteredColumns,
+                    markers: false,
+                    gap: 5,
+                    animate: {duration: 1000, easing: d_easing.quadOut}
+                });
+                new Tooltip(columnChart, "default");
+                new Highlight(columnChart, "default");
+                columnChart.render();
 
-            if (this.legend === undefined) {
-                this.legend = new Legend({chart: columnChart}, this.legendNode);
-            } else {
-                this.legend.set("chart", columnChart);
-                this.legend.refresh();
-            }
+                if (this.legend === undefined) {
+                    this.legend = new Legend({chart: columnChart}, this.legendNode);
+                } else {
+                    this.legend.set("chart", columnChart);
+                    this.legend.refresh();
+                }
 
-            this.connect(this._chartContainer, "resize", function (dims) {
-                var width = dims.w;
-                var height = dims.h;
-                this._chart.resize(width, height);
-            });
+                this.connect(this._chartContainer, "resize", function (dims) {
+                    var width = dims.w;
+                    var height = dims.h;
+                    this._chart.resize(width, height);
+                });
+            }
         },
         _renderPieChart: function (data) {
-            this._chart.removePlot("default");
+            if (this._chart) {
+                this._chart.removePlot("default");
 
-            var pieChart = this._chart;
-            pieChart.setTheme(theme);
-            pieChart.addPlot("default", {
-                type: Pie,
-                labels: true,
-                labelOffset: -20,
-                radius: 600,
-                fontColor: "black",
-                animate: {duration: 1000}
-            });
-            var a = [];
-            for (var i = 0; i < data.length; i++) {
-                var tooltip = data[i].name + " [" + data[i].count + "]";
-                var d = {y: data[i].count, tooltip: tooltip, legend: data[i].name};
-                a.push(d);
+                var pieChart = this._chart;
+                pieChart.setTheme(theme);
+                pieChart.addPlot("default", {
+                    type: Pie,
+                    labels: true,
+                    labelOffset: -20,
+                    radius: 600,
+                    fontColor: "black",
+                    animate: {duration: 1000}
+                });
+                var a = [];
+                for (var i = 0; i < data.length; i++) {
+                    var tooltip = data[i].name + " [" + data[i].count + "]";
+                    var d = {y: data[i].count, tooltip: tooltip, legend: data[i].name};
+                    a.push(d);
+                }
+                pieChart.addSeries("", a);
+                new Tooltip(pieChart, "default");
+                new MoveSlice(pieChart, "default");
+                pieChart.render();
+
+                if (this.legend === undefined) {
+                    this.legend = new Legend({chart: pieChart}, this.legendNode);
+                } else {
+                    this.legend.set("chart", pieChart);
+                    this.legend.refresh();
+                }
+
+                this.connect(this._chartContainer, "resize", function (dims) {
+                    var width = dims.w;
+                    var height = dims.h;
+                    var size = Math.min(width, height);
+                    this._chart.resize(size, size);
+                });
             }
-            pieChart.addSeries("", a);
-            new Tooltip(pieChart, "default");
-            new MoveSlice(pieChart, "default");
-            pieChart.render();
-
-            if (this.legend === undefined) {
-                this.legend = new Legend({chart: pieChart}, this.legendNode);
-            } else {
-                this.legend.set("chart", pieChart);
-                this.legend.refresh();
-            }
-
-            this.connect(this._chartContainer, "resize", function (dims) {
-                var width = dims.w;
-                var height = dims.h;
-                var size = Math.min(width, height);
-                this._chart.resize(size, size);
-            });
         },
         _onRefresh: function () {
             if (this.tool.active) {
@@ -228,7 +232,7 @@ define([
             } else if (this._useExtent === true) {
                 extentSwitch.set("value", "on");
             }
-            this._onRefresh();
+            //this._onRefresh();
         },
         _onChangeChartType: function () {
             if (this._chartSwitch.get("value") === "on") {

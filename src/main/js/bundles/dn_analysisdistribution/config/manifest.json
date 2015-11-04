@@ -34,7 +34,7 @@
             "properties": {
                 "dataformFile": "resource('./DataForm.json')",
                 "bid": "dn_analysisdistribution",
-                "pid": "dn_analysisdistribution-TabWidgetFactory",
+                "pid": "dn_analysisdistribution-WidgetFactory",
                 "id": "analysisDistributionBuilderWidget",
                 "defaultProperties": {
                     "storeId": "defineInAppJson",

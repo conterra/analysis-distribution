@@ -59,7 +59,7 @@
             "immediate": true,
             "references": [
                 {
-                    "name": "_stores",
+                    "name": "store",
                     "providing": "ct.api.Store",
                     "cardinality": "1..n",
                     "filter": "(useIn=selection)"

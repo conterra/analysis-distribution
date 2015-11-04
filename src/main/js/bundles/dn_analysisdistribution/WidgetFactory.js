@@ -29,6 +29,9 @@ define([
         ChartingWidget,
         Widget) {
     return declare([], {
+        constructor: function (properties) {
+            this.stores = [];
+        },
         createInstance: function () {
             this.inherited(arguments);
             return this.widget;
@@ -36,10 +39,8 @@ define([
         activate: function () {
             this.inherited(arguments);
             var props = this._properties;
-            this.stores = this._stores;
-            var stores = this.stores;
-            var storeId = props.storeId;
-            var widget = this.widget = new Widget({stores: stores, storeId: storeId, source: this});
+            var storeId = this.storeId = props.storeId;
+            var widget = this.widget = new Widget({source: this});
             ct_css.switchHidden(widget.filteringNode, !props.enableStoreSelect);
             var tabcontainer = this.tabcontainer = new TabContainer();
             //var store = this._store;
@@ -67,8 +68,10 @@ define([
                 children._onNewProperties();
                 children.resize();
             }, this);
-            this.changeStore(props.storeId);
-            this.widget.setSelectedStore(props.storeId);
+            if (props.storeId !== this.widget.getSelectedStore()) {
+                this.changeStore(props.storeId);
+                this.widget.setSelectedStore(props.storeId);
+            }
         },
         changeStore: function (storeId) {
             if (this.tabcontainer) {
@@ -128,32 +131,15 @@ define([
             }, this);
             return s;
         },
-        addStores: function (store, serviceproperties) {
-            // filter incoming stores for configured storeid-array
-            var index = d_array.indexOf(this.storeIds, serviceproperties.id);
-            if (index > -1) {
-                // merge store and its own properties
-                store.serviceproperties = serviceproperties;
-                this.stores.push(store);
-                if (this._widget) {
-                    this._widget._filteringSelect.addOption({
-                        name: store.serviceproperties.title,
-                        id: store.serviceproperties.id
-                    });
-                } else {
-                    // if widget has not been initialized yet we store all options
-                    this.selectionOptions = [];
-                    d_array.forEach(this.stores, function (store) {
-                        var option = {
-                            label: store.serviceproperties.title,
-                            value: store.serviceproperties.id
-                        };
-                        this.selectionOptions.push(option);
-                    }, this);
-                }
+        addStore: function (store, serviceproperties) {
+            // merge store and its own properties
+            store.serviceproperties = serviceproperties;
+            this.stores.push(store);
+            if (this.widget) {
+                this.widget.updateStores();
             }
         },
-        removeStores: function (store, serviceproperties) {
+        removeStore: function (store, serviceproperties) {
             // filter removed stores for configured storeid-array
             var index = d_array.indexOf(this.stores, store);
             if (index > -1) {
