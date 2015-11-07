@@ -181,8 +181,7 @@ define([
                     labels: true,
                     labelOffset: -20,
                     radius: 600,
-                    fontColor: "black",
-                    animate: {duration: 1000}
+                    fontColor: "black"
                 });
                 var a = [];
                 for (var i = 0; i < data.length; i++) {
@@ -205,8 +204,9 @@ define([
                 this.connect(this._chartContainer, "resize", function (dims) {
                     var width = dims.w;
                     var height = dims.h;
-                    var size = Math.min(width, height);
-                    this._chart.resize(size, size);
+                    //var size = Math.min(width, height);
+                    //this._chart.resize(size, size);
+                    this._chart.resize(width, height);
                 });
             }
         },

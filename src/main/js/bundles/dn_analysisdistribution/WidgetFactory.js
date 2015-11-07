@@ -137,35 +137,9 @@ define([
             return s;
         },
         addStore: function (store, serviceproperties) {
-            // merge store and its own properties
-            store.serviceproperties = serviceproperties;
             this.stores.push(store);
             if (this.widget) {
                 this.widget.updateStores();
-            }
-        },
-        removeStore: function (store, serviceproperties) {
-            // filter removed stores for configured storeid-array
-            var index = d_array.indexOf(this.stores, store);
-            if (index > -1) {
-                // remove store from array
-                this.stores = d_array.filter(this.stores, function (item) {
-                    return item.serviceproperties.id !== serviceproperties.id;
-                });
-                // remove store from widget
-                if (this._srWidget) {
-                    this._srWidget.storeSelect.removeOption(serviceproperties.id);
-                } else {
-                    // if widget has not been initialized yet we store all options
-                    this.selectionOptions = [];
-                    d_array.forEach(this.stores, function (store) {
-                        var option = {
-                            label: store.serviceproperties.title,
-                            value: store.serviceproperties.id
-                        };
-                        this.selectionOptions.push(option);
-                    }, this);
-                }
             }
         }
     });
