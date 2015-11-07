@@ -40,6 +40,7 @@
                     "storeId": "defineInAppJson",
                     "enableStoreSelect": true,
                     "chartType": "column",
+                    "enableLegend": true,
                     "spatialOperator": "$intersects",
                     "useExtent": false,
                     "enableChartSwitch": true,

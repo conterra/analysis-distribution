@@ -1,19 +1,24 @@
 <div >
     <div data-dojo-type="dijit/layout/BorderContainer" data-dojo-props="gutters: false, 'class':'noPadding'"  data-dojo-attach-point="_container">
         <div data-dojo-type="dijit/layout/ContentPane"  data-dojo-props="region: 'top'">
-            <div class="container" data-dojo-attach-point="chartSwitchNode">
+            <div class="container" data-dojo-attach-point="_chartSwitchNode">
                 <span>${i18n.column}</span>
                 <div class="chartSwitch" data-dojo-type="dojox/mobile/Switch" data-dojo-props="value:'off',leftLabel:'${i18n.null}',rightLabel:'${i18n.null}'" data-dojo-attach-point="_chartSwitch" data-dojo-attach-event="onStateChanged:_onChangeChartType" style="width: 80px;"></div>
                 <span>${i18n.pie}</span>
             </div>
-            <div class="container" data-dojo-attach-point="extentSwitchNode">
+            <div class="container" data-dojo-attach-point="_extentSwitchNode">
                 <span>${i18n.extent}</span>
                 <div class="extentSwitch" data-dojo-type="dojox/mobile/Switch" data-dojo-props="value:'off',leftLabel:'${i18n.on}',rightLabel:'${i18n.off}'" data-dojo-attach-point="_extentSwitch" data-dojo-attach-event="onStateChanged:_onChangeExtentSetting" style="width: 80px;"></div>
             </div>
-            <div data-dojo-attach-point="legendNode"></div>
+
         </div>
         <div data-dojo-type="dijit/layout/ContentPane"  data-dojo-props="region: 'center', 'class':'noPadding'" data-dojo-attach-point="_chartContainer">
-            <div class="chartNode" data-dojo-attach-point="chartNode"></div>
+            <div class="chartNode" data-dojo-attach-point="_chartNode"></div>
+        </div>
+        <div data-dojo-attach-point="_legendContainer">
+            <div data-dojo-type="dijit/layout/ContentPane"  data-dojo-props="region: 'bottom', 'class':'noPadding'">
+                <div data-dojo-attach-point="legendNode"></div>
+            </div>
         </div>
     </div>
 </div>

@@ -30,7 +30,8 @@ define({
                 enableChartSwitch:  "Enable chart switch",
                 enableExtentSwitch: "Enable extent switch",
                 store: "Store",
-                enableStoreSelect: "Enable store select"
+                enableStoreSelect: "Enable store select",
+                enableLegend: "Enable legend"
             },
     de: true
 });

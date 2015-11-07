@@ -85,12 +85,15 @@ define([
             var properties = this.props;
             this._chartType = properties.chartType;
             this._useExtent = properties.useExtent;
+            this._enableLegend = properties.enableLegend;
             this._enableChartSwitch = properties.enableChartSwitch;
             this._enableExtentSwitch = properties.enableExtentSwitch;
             this._spatialOperator = properties.spatialOperator;
+            
+            ct_css.switchHidden(this._legendContainer, !this._enableLegend);
 
             var chartSwitch = this._chartSwitch;
-            ct_css.switchHidden(this.chartSwitchNode, !this._enableChartSwitch);
+            ct_css.switchHidden(this._chartSwitchNode, !this._enableChartSwitch);
             if (this._chartType === "column") {
                 chartSwitch.set("value", "off");
             } else if (this._chartType === "pie") {
@@ -98,13 +101,13 @@ define([
             }
 
             var extentSwitch = this._extentSwitch;
-            ct_css.switchHidden(this.extentSwitchNode, !this._enableExtentSwitch);
+            ct_css.switchHidden(this._extentSwitchNode, !this._enableExtentSwitch);
             if (this._useExtent === false) {
                 extentSwitch.set("value", "off");
             } else if (this._useExtent === true) {
                 extentSwitch.set("value", "on");
             }
-            this._chart = new Chart(this.chartNode);
+            this._chart = new Chart(this._chartNode);
             this.data;
         },
         resize: function (dims) {
@@ -130,10 +133,10 @@ define([
                     vertical: true,
                     fixLower: "major",
                     fixUpper: "major",
-                    majorTickStep: 10,
+                    /*majorTickStep: 10,
                     minorTickStep: 1,
                     minorTicks: true,
-                    microTicks: false,
+                    microTicks: false,*/
                     natural: true,
                     fixed: true
                 });
@@ -218,15 +221,17 @@ define([
             }
         },
         _onNewProperties: function () {
+            ct_css.switchHidden(this._legendContainer, !this._enableLegend);
+            
             var chartSwitch = this._chartSwitch;
-            ct_css.switchHidden(this.chartSwitchNode, !this._enableChartSwitch);
+            ct_css.switchHidden(this._chartSwitchNode, !this._enableChartSwitch);
             if (this._chartType === "column") {
                 chartSwitch.set("value", "off");
             } else if (this._chartType === "pie") {
                 chartSwitch.set("value", "on");
             }
             var extentSwitch = this._extentSwitch;
-            ct_css.switchHidden(this.extentSwitchNode, !this._enableExtentSwitch);
+            ct_css.switchHidden(this._extentSwitchNode, !this._enableExtentSwitch);
             if (this._useExtent === false) {
                 extentSwitch.set("value", "off");
             } else if (this._useExtent === true) {

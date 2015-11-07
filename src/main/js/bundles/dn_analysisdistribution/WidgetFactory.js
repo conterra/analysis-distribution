@@ -41,6 +41,7 @@ define([
             var props = this._properties;
             var storeId = this.storeId = props.storeId;
             var widget = this.widget = new Widget({source: this});
+            ct_css.switchHidden(widget.topNode, !props.enableStoreSelect);
             ct_css.switchHidden(widget.filteringNode, !props.enableStoreSelect);
             var tabcontainer = this.tabcontainer = new TabContainer();
             //var store = this._store;
@@ -54,14 +55,17 @@ define([
             var props = this._properties;
             var chartType = props.chartType;
             var useExtent = props.useExtent;
+            var enableLegend = props.enableLegend;
             var enableChartSwitch = props.enableChartSwitch;
             var enableExtentSwitch = props.enableExtentSwitch;
             var spatialOperator = props.spatialOperator;
             var enableStoreSelect = props.enableStoreSelect;
+            ct_css.switchHidden(this.widget.topNode, !enableStoreSelect);
             ct_css.switchHidden(this.widget.filteringNode, !enableStoreSelect);
             d_array.forEach(this.tabcontainer.getChildren(), function (children) {
                 children.set("_chartType", chartType);
                 children.set("_useExtent", useExtent);
+                children.set("_enableLegend", enableLegend);
                 children.set("_enableChartSwitch", enableChartSwitch);
                 children.set("_enableExtentSwitch", enableExtentSwitch);
                 children.set("_spatialOperator", spatialOperator);
@@ -72,6 +76,7 @@ define([
                 this.changeStore(props.storeId);
                 this.widget.setSelectedStore(props.storeId);
             }
+            this.widget.resize();
         },
         changeStore: function (storeId) {
             if (this.tabcontainer) {

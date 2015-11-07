@@ -86,6 +86,27 @@
                     "enablePagination": true,
                     "fetchIdProperty": true,
                     "id": "damageStore"
+                },
+                {
+                    "title": "State of bathing waters (Bathing water quality)",
+                    "description": "Pointlayer is based on Bathing water directive (BWD) database(bathing water locations data as reported for 2014 bathing season). All data in the layer are aggregated by bathing water monitoring locations and bathing waters quality categories for inland and coastal bathing waters together. Layer in the map is visible on scales range from 1:5,000,000 and more detalied. In such cases, individual bathing water monitoring sites are visualized and colored according achived quality class. Symbol size depends on the map scale.",
+                    "omniSearchLabelAttr": "Name",
+                    "omniSearchSearchAttr": "Name",
+                    "idProperty": "OBJECTID",
+                    "url": "http://water.discomap.eea.europa.eu/arcgis/rest/services/BathingWater/BathingWater_Dyna_WM/MapServer/3",
+                    "useIn": [
+                        "omnisearch",
+                        "selection"
+                    ],
+                    "filterOptions": {
+                        "suggestContains": true
+                    },
+                    "omniSearchTypingDelay": 500,
+                    "omniSearchPageSize": 20,
+                    "omniSearchDefaultLabel": "Suchbegriff eingeben...",
+                    "fetchIdProperty": true,
+                    "enablePagination": false,
+                    "id": "_AGS_STORE_1446801354388"
                 }
             ],
             "enabled": true

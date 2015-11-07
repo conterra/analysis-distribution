@@ -28,5 +28,6 @@ define({
     enableChartSwitch: "Diagrammtyp-\u00c4nderung zulassen",
     enableExtentSwitch: "Verwendung des aktuellen Ausschnitts zulassen",
     store: "Store",
-    enableStoreSelect: "Store-\u00c4nderung zulassen"
+    enableStoreSelect: "Store-\u00c4nderung zulassen",
+    enableLegend: "Legende anzeigen"
 });

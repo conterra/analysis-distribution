@@ -39,6 +39,11 @@
             }
         },
         {
+            "type": "checkbox",
+            "label": "${enableLegend}",
+            "field": "enableLegend"
+        },
+        {
             "type": "selectbox",
             "field": "spatialOperator",
             "label": "${spatialOperator}",
