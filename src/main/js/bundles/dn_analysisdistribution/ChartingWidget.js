@@ -80,7 +80,8 @@ define([
             this.connect(tool, "onClick", function () {
                 this._chartingWidgetController.createChart(this._useExtent, this._spatialOperator);
             });
-            this.set("title", this.alias);
+            if (this.alias)
+                this.set("title", this.alias);
             this.inherited(arguments);
             var properties = this.props;
             this._chartType = properties.chartType;
@@ -89,7 +90,7 @@ define([
             this._enableChartSwitch = properties.enableChartSwitch;
             this._enableExtentSwitch = properties.enableExtentSwitch;
             this._spatialOperator = properties.spatialOperator;
-            
+
             ct_css.switchHidden(this._legendContainer, !this._enableLegend);
 
             var chartSwitch = this._chartSwitch;
@@ -134,9 +135,9 @@ define([
                     fixLower: "major",
                     fixUpper: "major",
                     /*majorTickStep: 10,
-                    minorTickStep: 1,
-                    minorTicks: true,
-                    microTicks: false,*/
+                     minorTickStep: 1,
+                     minorTicks: true,
+                     microTicks: false,*/
                     natural: true,
                     fixed: true
                 });
@@ -222,7 +223,7 @@ define([
         },
         _onNewProperties: function () {
             ct_css.switchHidden(this._legendContainer, !this._enableLegend);
-            
+
             var chartSwitch = this._chartSwitch;
             ct_css.switchHidden(this._chartSwitchNode, !this._enableChartSwitch);
             if (this._chartType === "column") {
