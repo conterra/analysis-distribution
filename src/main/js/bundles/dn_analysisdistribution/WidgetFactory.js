@@ -86,7 +86,7 @@ define([
                 var store = this._getSelectedStore(storeId);
                 this._addTabs(store);
                 d_array.forEach(this.tabcontainer.getChildren(), function (children) {
-                    children._onNewData();
+                    children.onNewData();
                 }, this);
             }
         },

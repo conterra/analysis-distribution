@@ -75,7 +75,7 @@ define([
                 tool: tool
             });
             this.connect(this.mapState, "onExtentChange", function () {
-                this._onNewData();
+                this._chartingWidgetController.onNewData();
             });
             this.connect(tool, "onClick", function () {
                 this._chartingWidgetController.createChart(this._useExtent, this._spatialOperator);
@@ -109,7 +109,7 @@ define([
                 extentSwitch.set("value", "on");
             }
             this._chart = new Chart(this._chartNode);
-            this.data;
+            //this.data;
         },
         resize: function (dims) {
             this._container.resize(dims);
@@ -211,15 +211,13 @@ define([
                 });
             }
         },
-        _onRefresh: function () {
-            if (this.tool.active) {
-                this.renderChart(this.data);
-            }
+        onRefresh: function () {
         },
-        _onNewData: function () {
-            if (this.tool.active) {
-                this._chartingWidgetController.createChart(this._useExtent, this._spatialOperator);
-            }
+        onNewData: function () {
+        },
+        onChangeChartType: function () {
+        },
+        onChangeExtentSetting: function () {
         },
         _onNewProperties: function () {
             ct_css.switchHidden(this._legendContainer, !this._enableLegend);
@@ -238,23 +236,6 @@ define([
             } else if (this._useExtent === true) {
                 extentSwitch.set("value", "on");
             }
-            //this._onRefresh();
-        },
-        _onChangeChartType: function () {
-            if (this._chartSwitch.get("value") === "on") {
-                this._chartType = "pie";
-            } else {
-                this._chartType = "column";
-            }
-            this._onRefresh();
-        },
-        _onChangeExtentSetting: function () {
-            if (this._extentSwitch.get("value") === "on") {
-                this._useExtent = true;
-            } else {
-                this._useExtent = false;
-            }
-            this._onNewData();
         }
     });
 });

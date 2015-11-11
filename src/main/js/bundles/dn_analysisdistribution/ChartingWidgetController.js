@@ -34,6 +34,10 @@ define([
         constructor: function (args) {
             this.source = args.source;
             this.tool = args.tool;
+            this.connect(this.source, "onRefresh", this.onRefresh);
+            this.connect(this.source, "onNewData", this.onNewData);
+            this.connect(this.source, "onChangeChartType", this.onChangeChartType);
+            this.connect(this.source, "onChangeExtentSetting", this.onChangeExtentSetting);
             this.inherited(arguments);
         },
         createChart: function (extentStatus, spatialOperator) {
@@ -119,6 +123,34 @@ define([
             if (tool) {
                 tool.set("processing", processing);
             }
+        },
+        onNewData: function () {
+            if (this.tool.active) {
+                this.createChart(this.source._useExtent, this.source._spatialOperator);
+            }
+        },
+        onRefresh: function () {
+            if (this.tool.active) {
+                this.source.renderChart(this.source.data);
+            }
+        },
+        onChangeChartType: function () {
+            var widget = this.source;
+            if (widget._chartSwitch.get("value") === "on") {
+                widget._chartType = "pie";
+            } else {
+                widget._chartType = "column";
+            }
+            this.onRefresh();
+        },
+        onChangeExtentSetting: function () {
+            var widget = this.source;
+            if (widget._extentSwitch.get("value") === "on") {
+                widget._useExtent = true;
+            } else {
+                widget._useExtent = false;
+            }
+            this.onNewData();
         }
     });
 });
