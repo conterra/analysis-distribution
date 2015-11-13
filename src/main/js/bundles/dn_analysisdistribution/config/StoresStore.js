@@ -15,15 +15,32 @@
  */
 define([
     "dojo/_base/declare",
-    "ct/store/ComplexMemory"
-], function (declare, ComplexMemory) {
+    "ct/store/ComplexMemory",
+    "ct/_when"
+], function (declare, ComplexMemory, ct_when) {
     return declare([ComplexMemory], {
         addStore: function (store, properties) {
-            var id = properties.id;
-            var title = properties.title || id;
-            this.put({
-                id: id,
-                title: title
+            ct_when(this._getMetadata(store), function (data) {
+                var id = properties.id;
+                var title = properties.title || id;
+                if (data.length > 0)
+                    this.put({
+                        id: id,
+                        title: title
+                    });
+            }, this);
+        },
+        _getMetadata: function (store) {
+            var data = [];
+            var metadata = store.getMetadata();
+            return ct_when(metadata, function (mdata) {
+                var fields = mdata.fields;
+                for (var i = 0; i < fields.length; i++) {
+                    if (fields[i].domain) {
+                        data.push(fields[i].alias);
+                    }
+                }
+                return data;
             });
         }
     });

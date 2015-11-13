@@ -17,6 +17,7 @@ define([
     "dojo/_base/declare",
     "dojo/_base/array",
     "ct/_when",
+    "ct/array",
     "ct/util/css",
     "dijit/layout/TabContainer",
     "./ChartingWidget",
@@ -24,6 +25,7 @@ define([
 ], function (declare,
         d_array,
         ct_when,
+        ct_array,
         ct_css,
         TabContainer,
         ChartingWidget,
@@ -95,52 +97,50 @@ define([
             var props = this._properties;
             var i18n = this._i18n.get();
             var tool = this._tool;
-            var data = this.data = this._getMetadata(store);
-            d_array.forEach(data || [], function (alias) {
-                var tab = new ChartingWidget({
-                    props: props,
-                    alias: alias,
-                    store: store,
-                    mapState: mapState,
-                    i18n: i18n,
-                    tool: tool
-                });
-                if (tab) {
-                    if (!this.tabcontainer) {
-                        this.tabcontainer = new TabContainer();
+            ct_when(this._getMetadata(store), function (data) {
+                d_array.forEach(data || [], function (alias) {
+                    var tab = new ChartingWidget({
+                        props: props,
+                        alias: alias,
+                        store: store,
+                        mapState: mapState,
+                        i18n: i18n,
+                        tool: tool
+                    });
+                    if (tab) {
+                        if (!this.tabcontainer) {
+                            this.tabcontainer = new TabContainer();
+                        }
+                        this.tabcontainer.addChild(tab);
+                        tab.startup();
                     }
-                    this.tabcontainer.addChild(tab);
-                    tab.startup();
-                }
+                }, this);
             }, this);
         },
         _getMetadata: function (store) {
             var data = [];
             var metadata = store.getMetadata();
-            ct_when(metadata, function (mdata) {
+            return ct_when(metadata, function (mdata) {
                 var fields = mdata.fields;
                 for (var i = 0; i < fields.length; i++) {
                     if (fields[i].domain) {
                         data.push(fields[i].alias);
                     }
                 }
+                return data;
             });
-            return data;
         },
         _getSelectedStore: function (id) {
-            var s;
-            d_array.forEach(this.stores, function (store) {
-                if (id === store.id) {
-                    s = store;
-                }
-            }, this);
-            return s;
+            return ct_array.arraySearchFirst(this.stores, {id: id});
         },
         addStore: function (store, serviceproperties) {
-            this.stores.push(store);
-            if (this.widget) {
-                this.widget.updateStores();
-            }
+            ct_when(this._getMetadata(store), function (data) {
+                if (data.length > 0)
+                    this.stores.push(store);
+                if (this.widget) {
+                    this.widget.updateStores();
+                }
+            }, this);
         }
     });
 });
