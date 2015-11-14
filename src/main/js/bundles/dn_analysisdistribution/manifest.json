@@ -12,6 +12,9 @@
         },
         {
             "name": "agssearch"
+        },
+        {
+            "name": "resultcenter"
         }
     ],
     "CSS-Themes-Extension": [
@@ -22,7 +25,7 @@
     ],
     "layout-widgets": [
         {
-            "role": "widget",
+            "role": "analysisDistributionWidget",
             "window": {
                 "title": "${windowTitle}",
                 "marginBox": {
@@ -32,6 +35,22 @@
                     "h": 620
                 },
                 "dockTool": "analysisDistributionTool",
+                "closable": true,
+                "minimizeOnClose": true,
+                "resizable": false
+            }
+        },
+        {
+            "role": "geometryAnalysisDistributionWidget",
+            "window": {
+                "title": "${windowTitle}",
+                "marginBox": {
+                    "t": 50,
+                    "r": 20,
+                    "w": 250,
+                    "h": 150
+                },
+                "dockTool": "geometryAnalysisDistributionTool",
                 "closable": true,
                 "minimizeOnClose": true,
                 "resizable": false
@@ -46,7 +65,7 @@
                 "ct.framework.api.EventHandler"
             ],
             "properties": {
-                "widgetRole": "widget",
+                "widgetRole": "analysisDistributionWidget",
                 "storeId": "defineInAppJson",
                 "enableStoreSelect": true,
                 "chartType": "column",
@@ -96,6 +115,80 @@
                 "togglable": true,
                 "iconClass": "icon-chart-bar"
             }
+        },
+        {
+            "name": "GeometryWidgetFactory",
+            "provides": [
+                "dijit.Widget",
+                "ct.framework.api.EventHandler"
+            ],
+            "properties": {
+                "widgetRole": "geometryAnalysisDistributionWidget"
+            },
+            "instanceFactory": true,
+            "immediate": true,
+            "references": [
+                {
+                    "name": "store",
+                    "providing": "ct.api.Store",
+                    "cardinality": "1..n",
+                    "filter": "(useIn=selection)"
+                },
+                {
+                    "name": "_mapState",
+                    "providing": "ct.mapping.map.MapState",
+                    "policy": "static"
+                },
+                {
+                    "name": "_tool",
+                    "providing": "ct.tools.Tool",
+                    "filter": "(id=geometryAnalysisDistributionTool)"
+                },
+                {
+                    "name": "_dataModel",
+                    "providing": "ct.resultcenter.DataModel"
+                },
+                {
+                    "name": "_drawGeometryHandler",
+                    "providing": "dn_analysisdistribution.DrawGeometryHandler"
+                }
+            ]
+        },
+        {
+            "name": "test",
+            "impl": "ct/tools/Tool",
+            "provides": ["ct.tools.Tool"],
+            "propertiesConstructor": true,
+            "properties": {
+                "id": "geometryAnalysisDistributionTool",
+                "toolRole": "toolset",
+                "title": "Geometry-Analysis/Distribution Tool",
+                "tooltip": "Geometry-Analysis/Distribution Tool",
+                "togglable": true,
+                "iconClass": "icon-visibility-visible"
+            }
+        },
+        {
+            "name": "DrawGeometryHandler",
+            "provides": "dn_analysisdistribution.DrawGeometryHandler",
+            "references": [
+                {
+                    "name": "_eventService",
+                    "providing": "ct.framework.api.EventService"
+                },
+                {
+                    "name": "_drawController",
+                    "providing": "ct.mapping.edit.DrawStateController"
+                },
+                {
+                    "name": "_mapModel",
+                    "providing": "ct.mapping.map.MapModel"
+                },
+                {
+                    "name": "_logService",
+                    "providing": "ct.framework.api.LogService"
+                }
+            ]
         }
     ]
 }

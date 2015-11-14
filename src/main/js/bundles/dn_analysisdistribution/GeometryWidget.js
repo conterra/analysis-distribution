@@ -18,11 +18,12 @@ define([
     "dijit/_WidgetBase",
     "dijit/_TemplatedMixin",
     "dijit/_WidgetsInTemplateMixin",
-    "dojo/text!./templates/Widget.html",
+    "dojo/text!./templates/GeometryWidget.html",
     "dojo/dom-construct",
     "dojo/_base/array",
     "dijit/layout/BorderContainer",
     "dijit/layout/ContentPane",
+    "dijit/form/Button",
     "ct/util/css",
     "ct/async",
     "ct/_when",
@@ -39,6 +40,7 @@ define([
         d_array,
         BorderContainer,
         ContentPane,
+        Button,
         ct_css,
         ct_async,
         ct_when,
@@ -51,10 +53,36 @@ define([
         templateString: templateStringContent,
         postCreate: function () {
             this.maxComboBoxHeight = 160;
-            var storeData = this.storeData = this._getStoreData(this.source.stores);
-            ct_when(storeData, function (storeData) {
+            var gStoreData = this._getStoreData(this.source.gStores);
+            ct_when(gStoreData, function (storeData) {
+                this.gStoreData = storeData;
+                var storesStore = new Memory({
+                    data: storeData
+                });
+                var filteringSelect1 = this._filteringSelect1 = new FilteringSelect({
+                    name: "cvStores",
+                    store: storesStore,
+                    value: storeData[0].id,
+                    searchAttr: "label",
+                    style: "width: 155px;",
+                    maxHeight: this.maxComboBoxHeight
+                }, this._selectNode1);
+            }, this);
+            var cvStoreData = this._getStoreData(/*this.source.cvStores*/this.source.stores);
+            ct_when(cvStoreData, function (storeData) {
+                this.cvStoreData = storeData;
                 this.storeData = storeData;
-                this._init();
+                var storesStore = new Memory({
+                    data: storeData
+                });
+                var filteringSelect2 = this._filteringSelect2 = new FilteringSelect({
+                    name: "cvStores",
+                    store: storesStore,
+                    value: storeData[0].id,
+                    searchAttr: "label",
+                    style: "width: 155px;",
+                    maxHeight: this.maxComboBoxHeight
+                }, this._selectNode2);
             }, this);
 
             this.inherited(arguments);
@@ -62,35 +90,23 @@ define([
         resize: function (dims) {
             this._container.resize(dims);
         },
-        addTabContainer: function (tabContainer) {
-            domConstruct.place(tabContainer.domNode, this._tabNode, "replace");
-        },
         updateStores: function () {
-            var storeData = this.storeData = this._getStoreData(this.source.stores);
-            ct_when(storeData, function (storeData) {
-                this.storeData = storeData;
+            var gStoreData = this._getStoreData(this.source.stores);
+            var cvStoreData = this._getStoreData(this.source.cvStores);
+            return ct_when(gStoreData, function (storeData) {
+                this.gStoreData = storeData;
                 var storesStore = new Memory({
-                    data: this.storeData
+                    data: storeData
                 });
-                this._filteringSelect.set("store", storesStore);
+                this._filteringSelect1.set("store", storesStore);
             }, this);
-        },
-        _init: function () {
-            var storesStore = new Memory({
-                data: this.storeData
-            });
-            var filteringSelect = this._filteringSelect = new FilteringSelect({
-                name: "stores",
-                value: this.source.storeId,
-                store: storesStore,
-                searchAttr: "label",
-                style: "width: 155px;",
-                maxHeight: this.maxComboBoxHeight
-            }, this._filteringSelectNode);
-            this.connect(filteringSelect, "onChange", this._changeStore);
-        },
-        _changeStore: function () {
-            this.source.changeStore(this._filteringSelect.value);
+            return ct_when(cvStoreData, function (storeData) {
+                this.cvStoreData = storeData;
+                var storesStore = new Memory({
+                    data: storeData
+                });
+                this._filteringSelect2.set("store", storesStore);
+            }, this);
         },
         _getStoreData: function (stores) {
             return ct_async.join(d_array.map(stores, function (s) {
@@ -103,11 +119,14 @@ define([
                 });
             });
         },
-        setSelectedStore: function (storeId) {
-            this._filteringSelect.set("value", storeId);
+        getSelectedGStore: function () {
+            return this._filteringSelect1.get("value");
         },
-        getSelectedStore: function () {
-            return this._filteringSelect.get("value");
+        getSelectedCVStore: function () {
+            return this._filteringSelect2.get("value");
+        },
+        _onDone: function () {
+            this.source.onDone();
         }
     });
 });
