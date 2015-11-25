@@ -151,6 +151,10 @@
                 {
                     "name": "_drawGeometryHandler",
                     "providing": "dn_analysisdistribution.DrawGeometryHandler"
+                },
+                {
+                    "name": "_map",
+                    "providing": "ct.mapping.map.Map"
                 }
             ]
         },

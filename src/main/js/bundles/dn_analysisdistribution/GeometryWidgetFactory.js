@@ -16,15 +16,19 @@
 define([
     "dojo/_base/declare",
     "dojo/_base/array",
+    "dojo/_base/Deferred",
+    "dojo/aspect",
     "ct/_when",
     "ct/array",
     "./GeometryWidget",
     "ct/_Connect"
 ], function (declare,
         d_array,
+        Deferred,
+        d_aspect,
         ct_when,
         ct_array,
-        Widget,
+        GeometryWidget,
         _Connect) {
     return declare([_Connect], {
         constructor: function (properties) {
@@ -38,7 +42,7 @@ define([
         },
         activate: function () {
             this.inherited(arguments);
-            var widget = this.widget = new Widget({source: this});
+            var widget = this.widget = new GeometryWidget({source: this});
             widget.resize();
             this.connect(this._tool, "onDeactivate", function () {
                 this._drawGeometryHandler.clearGraphics();
@@ -82,21 +86,70 @@ define([
         onDone: function () {
             this._setProcessing(true);
             this._drawGeometryHandler.clearGraphics();
-            var store = this._getSelectedStoreObj(this.widget.getSelectedGStore());
+            var gStore = this._getSelectedStoreObj(this.widget.getSelectedGStore());
             var cvStore = this._getSelectedStoreObj(this.widget.getSelectedCVStore());
             var extent = this._mapState.getExtent();
-            ct_when(store.query({geometry: {$intersects: extent}}, {fields: {"geometry": true}}), function (result) {
+            ct_when(gStore.query({geometry: {$intersects: extent}}, {fields: {"geometry": true}}), function (result) {
                 d_array.forEach(result, function (feature) {
                     var geom = feature.geometry;
                     this._drawGeometryHandler.drawGeometry(geom);
                     var deferred = cvStore.query({geometry: {$intersects: geom}}, {count: 0}).total;
                     ct_when(deferred, function (count) {
                         this._drawGeometryHandler.drawDistanceText(geom, count.toString());
+                        this.connect(this._drawGeometryHandler, "_handleGeometryDrawn", function (evt) {
+                            var point = evt.geometry;
+
+                            var geom = this._getGeometry(point);
+                            
+                            ct_when(geom, function (geometry) {
+                                debugger
+                            });
+                        });
                         this._setProcessing(false);
+                        this._drawGeometryHandler.allowUserToDrawGeometry("Point");
                     }, this);
                 }, this);
             }, this);
-
+        },
+        _getGeometry: function (mapPoint) {
+            var def = new Deferred();
+            var gStore = this._getSelectedStoreObj(this.widget.getSelectedGStore());
+            ct_when(gStore.query({geometry: {$within: mapPoint}}, {fields: {"geometry": true}}), function (result) {
+                def.resolve(result.geometry);
+            }, this);
+            return def;
+        },
+        _createChart: function () {
+            var mapState = this._mapState;
+            var props = this._properties;
+            var i18n = this._i18n.get();
+            var tool = this._tool;
+            var cvStore = this._getSelectedStoreObj(this.widget.getSelectedCVStore());
+            ct_when(this._getMetadata(cvStore), function (data) {
+                d_array.forEach(data || [], function (alias) {
+                    var widget = new ChartingWidget({
+                        props: props,
+                        alias: alias,
+                        store: cvStore,
+                        mapState: mapState,
+                        i18n: i18n,
+                        tool: tool
+                    });
+                    var window = this._windowManager.createWindow({
+                        title: "i18n.wizard.editWindowTitle",
+                        marginBox: {
+                            w: 550,
+                            h: 274,
+                            t: 100,
+                            l: 20
+                        },
+                        content: widget,
+                        closable: true,
+                        resizable: true
+                    });
+                    window.show();
+                }, this);
+            }, this);
         }
     });
 });

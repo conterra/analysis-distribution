@@ -41,6 +41,12 @@ define([
 
             drawController.set("fillSymbol", this._getSymbolForPolygon());
         },
+        allowUserToDrawGeometry: function (geoType) {
+            this.deactivateDraw();
+            var drawController = this._drawController;
+            this.connect("draw", drawController, "onGeometryDrawn", this._handleGeometryDrawn);
+            drawController["activateDraw" + geoType]();
+        },
         drawGeometry: function (geometry) {
             var graphicsRenderer = this.graphicsRenderer;
             var feature = {
@@ -59,32 +65,6 @@ define([
         deactivateDraw: function () {
             this._drawController.deactivateDraw();
         },
-        drawCircle: function (center, minDistance, maxDistance, radiusUnit) {
-            var outerCircle = new Circle(center, {
-                "radius": maxDistance,
-                "radiusUnit": radiusUnit
-            });
-
-            if (minDistance !== 0) {
-                var innerCircle = new Circle(center, {
-                    "radius": minDistance,
-                    "radiusUnit": radiusUnit
-                });
-                var ring = innerCircle.rings[0];
-                outerCircle.addRing(ring.reverse());
-            }
-            var symbol = this._getSymbolForPolygon();
-            var feature = {
-                "geometry": outerCircle,
-                "symbol": symbol
-            };
-
-            if (this.surroundingsPolygon) {
-                this.graphicsRenderer.erase(this.surroundingsPolygon);
-            }
-            this.surroundingsPolygon = this.graphicsRenderer.draw(feature);
-            return feature;
-        },
         _getSymbolForPolygon: function () {
             return new SimpleFillSymbol(
                     SimpleFillSymbol.STYLE_SOLID,
@@ -97,7 +77,6 @@ define([
                     );
         },
         drawDistanceText: function (geometry, text) {
-            debugger
             var font = new Font();
             font.setSize("10pt");
             font.setWeight(Font.WEIGHT_BOLD);
@@ -116,12 +95,12 @@ define([
                 "yoffset": 0,
                 "type": "esriSMS",
                 "style": "esriSMSCircle"/*,
-                "outline": {
-                    "color": [0, 0, 0, 255],
-                    "width": 1,
-                    "type": "esriSLS",
-                    "style": "esriSLSSolid"
-                }*/
+                 "outline": {
+                 "color": [0, 0, 0, 255],
+                 "width": 1,
+                 "type": "esriSLS",
+                 "style": "esriSLSSolid"
+                 }*/
             });
             this.graphicsRenderer.draw(
                     {
@@ -135,6 +114,12 @@ define([
                         symbol: textSymbol
                     }
             );
+        },
+        _handleGeometryDrawn: function (evt) {
+            var geometry = evt.geometry;
+            var graphicsRenderer = this.graphicsRenderer;
+            graphicsRenderer.clear();
+            this.drawGeometry(geometry);
         }
     });
 });

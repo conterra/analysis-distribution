@@ -4,11 +4,13 @@
     "Bundle-Name": "${bundleName}",
     "Bundle-Description": "${bundleDescription}",
     "Bundle-Vendor": "con terra GmbH",
-    "Require-Bundle": [{
+    "Require-Bundle": [
+        {
             "name": "dataform"
         }, {
             "name": "wizard"
-        }],
+        }
+    ],
     "Components": [
         {
             "name": "BuilderEntry",
