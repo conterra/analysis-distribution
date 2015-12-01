@@ -251,7 +251,7 @@
                     <!-- add here properties which are used in plugin configuration resolution -->
                     <properties>
                         <!-- deployment of map.apps installation -->
-                        <mapapps.remote.base>http://%YOURSERVER%/ct-mapapps-webapp-%VERSION%</mapapps.remote.base>
+                        <mapapps.remote.base></mapapps.remote.base>
                     </properties>
                 </configuration>
             </plugin>
