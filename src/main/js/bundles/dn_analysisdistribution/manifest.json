@@ -155,6 +155,9 @@
                 {
                     "name": "_map",
                     "providing": "ct.mapping.map.Map"
+                }, {
+                    "name": "_windowManager",
+                    "providing": "ct.framework.api.WindowManager"
                 }
             ]
         },

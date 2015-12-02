@@ -20,16 +20,18 @@ define([
     "dojo/aspect",
     "ct/_when",
     "ct/array",
+    "ct/_Connect",
     "./GeometryWidget",
-    "ct/_Connect"
+    "./ChartingWidget"
 ], function (declare,
         d_array,
         Deferred,
         d_aspect,
         ct_when,
         ct_array,
+        _Connect,
         GeometryWidget,
-        _Connect) {
+        ChartingWidget) {
     return declare([_Connect], {
         constructor: function (properties) {
             this.cvStores = [];
@@ -96,30 +98,20 @@ define([
                     var deferred = cvStore.query({geometry: {$intersects: geom}}, {count: 0}).total;
                     ct_when(deferred, function (count) {
                         this._drawGeometryHandler.drawDistanceText(geom, count.toString());
-                        this.connect(this._drawGeometryHandler, "_handleGeometryDrawn", function (evt) {
-                            var point = evt.geometry;
-
-                            var geom = this._getGeometry(point);
-                            
-                            ct_when(geom, function (geometry) {
-                                debugger
-                            });
-                        });
+                        /*this.connect(this._mapState, "onClick", function (evt) {
+                            clearTimeout(this._timeout);
+                            var that = this;
+                            this._timeout = setTimeout(function () {
+                                var geom = evt.graphic.geometry;
+                                that._createChart(geom);
+                            }, 1000);
+                        });*/
                         this._setProcessing(false);
-                        this._drawGeometryHandler.allowUserToDrawGeometry("Point");
                     }, this);
                 }, this);
             }, this);
         },
-        _getGeometry: function (mapPoint) {
-            var def = new Deferred();
-            var gStore = this._getSelectedStoreObj(this.widget.getSelectedGStore());
-            ct_when(gStore.query({geometry: {$within: mapPoint}}, {fields: {"geometry": true}}), function (result) {
-                def.resolve(result.geometry);
-            }, this);
-            return def;
-        },
-        _createChart: function () {
+        _createChart: function (geometry) {
             var mapState = this._mapState;
             var props = this._properties;
             var i18n = this._i18n.get();

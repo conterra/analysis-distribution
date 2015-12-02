@@ -109,7 +109,6 @@ define([
                 extentSwitch.set("value", "on");
             }
             this._chart = new Chart(this._chartNode);
-            //this.data;
         },
         resize: function (dims) {
             this._container.resize(dims);
