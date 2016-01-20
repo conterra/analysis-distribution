@@ -110,7 +110,7 @@
             "properties": {
                 "id": "analysisDistributionTool",
                 "toolRole": "toolset",
-                "title": "Analysis/Distribution Tool",
+                "title": "${toolName}",
                 "tooltip": "${toolTooltip}",
                 "togglable": true,
                 "iconClass": "icon-chart-bar"
