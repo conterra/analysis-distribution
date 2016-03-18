@@ -462,7 +462,36 @@
         },
         "templates": {
             "TemplateModel": {
-                "_selectedTemplate": "seasons"
+                "_selectedTemplate": "seasons",
+                "_templates": [
+                    {
+                        "name": "seasons",
+                        "widgets": [
+                            {
+                                "widgetRole": "analysisDistributionWidget",
+                                "window": {
+                                    "marginBox": {
+                                        "t": 50,
+                                        "r": 20,
+                                        "w": 450,
+                                        "h": 620
+                                    }
+                                }
+                            },
+                            {
+                                "widgetRole": "geometryAnalysisDistributionWidget",
+                                "window": {
+                                    "marginBox": {
+                                        "t": 50,
+                                        "r": 20,
+                                        "w": 250,
+                                        "h": 150
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ]
             },
             "TemplateSelector": {
                 "componentEnabled": false

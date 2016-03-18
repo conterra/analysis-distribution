@@ -29,8 +29,6 @@
             "window": {
                 "title": "${windowTitle}",
                 "marginBox": {
-                    "t": 50,
-                    "r": 20,
                     "w": 450,
                     "h": 620
                 },
@@ -45,8 +43,6 @@
             "window": {
                 "title": "${windowTitle}",
                 "marginBox": {
-                    "t": 50,
-                    "r": 20,
                     "w": 250,
                     "h": 150
                 },
