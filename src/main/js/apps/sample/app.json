@@ -24,6 +24,7 @@
             "templatelayout",
             "templates",
             "themes",
+            "banner",
             "console"
         ]
     },
@@ -136,6 +137,13 @@
                 }
             ],
             "enabled": true
+        },
+        "banner": {
+            "BannerWidget": {
+                "image": "https://conterra.de/~/media/conterra/images/site_logos/conterra-logo.ashx",
+                "imagePosition": "above",
+                "link": "http://conterra.de"
+            }
         },
         "console": {
             "enabled": true
