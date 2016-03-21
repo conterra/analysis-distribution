@@ -4,7 +4,6 @@
     },
     "load": {
         "bundleLocations": ["localbundles", "bundles"],
-        "styles": ["${app}:app.css"],
         "allowedBundles": [
             "wizard",
             "dn_analysisdistribution",
@@ -140,9 +139,10 @@
         },
         "banner": {
             "BannerWidget": {
+                "label": "Developer Network",
                 "image": "https://conterra.de/~/media/conterra/images/site_logos/conterra-logo.ashx",
                 "imagePosition": "above",
-                "link": "http://conterra.de"
+                "link": "http://developernetwork.conterra.de/"
             }
         },
         "console": {
@@ -479,21 +479,10 @@
                                 "widgetRole": "analysisDistributionWidget",
                                 "window": {
                                     "marginBox": {
-                                        "t": 50,
+                                        "t": 120,
                                         "r": 20,
                                         "w": 450,
                                         "h": 620
-                                    }
-                                }
-                            },
-                            {
-                                "widgetRole": "geometryAnalysisDistributionWidget",
-                                "window": {
-                                    "marginBox": {
-                                        "t": 50,
-                                        "r": 20,
-                                        "w": 250,
-                                        "h": 150
                                     }
                                 }
                             }
@@ -507,9 +496,6 @@
             "enabled": true
         },
         "themes": {
-            "ApplicationStyleWriter": {
-                "styles": ["${app}:app.css"]
-            },
             "ThemeModel": {
                 "_selectedTheme": "everlasting"
             },
@@ -525,8 +511,7 @@
                         "id": "dropdown1",
                         "title": "Werkzeuge",
                         "tools": [
-                            "analysisDistributionTool",
-                            "geometryAnalysisDistributionTool"
+                            "analysisDistributionTool"
                         ],
                         "container": "map",
                         "__isDirty": true,

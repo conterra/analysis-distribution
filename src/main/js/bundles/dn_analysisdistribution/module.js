@@ -16,11 +16,8 @@
 define([
     ".",
     "./WidgetFactory",
-    "./GeometryWidgetFactory",
     "./ChartingWidgetController",
     "./Widget",
-    "./GeometryWidget",
     "./ChartingWidget",
-    "./DrawGeometryHandler",
     "ct/tools/Tool"
 ], {});

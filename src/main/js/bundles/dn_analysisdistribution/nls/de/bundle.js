@@ -15,7 +15,7 @@
  */
 define({
     bundleName: "Analyse/Verteilung",
-    bundleDescription: "Dieses Bundle z\u00e4lt alle Features und stellt die Ergebnisse in Diagrammen dar.",
+    bundleDescription: "Dieses Bundle z\u00e4lt alle Features und stellt die Ergebnisse in Diagrammen dar",
     toolName: "Analyse/Verteilung-Tool",
     toolTooltip: "Analyse/Verteilung-Tool",
     windowTitle: "Analyse / Verteilung",

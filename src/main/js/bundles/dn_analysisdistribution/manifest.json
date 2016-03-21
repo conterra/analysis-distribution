@@ -37,20 +37,6 @@
                 "minimizeOnClose": true,
                 "resizable": false
             }
-        },
-        {
-            "role": "geometryAnalysisDistributionWidget",
-            "window": {
-                "title": "${windowTitle}",
-                "marginBox": {
-                    "w": 250,
-                    "h": 150
-                },
-                "dockTool": "geometryAnalysisDistributionTool",
-                "closable": true,
-                "minimizeOnClose": true,
-                "resizable": false
-            }
         }
     ],
     "Components": [
@@ -80,12 +66,6 @@
                     "cardinality": "1..n",
                     "filter": "(useIn=selection)"
                 },
-                /*{
-                    "name": "_store",
-                    "providing": "ct.api.Store",
-                    "filter": "(id={storeId})",
-                    "policy": "static"
-                },*/
                 {
                     "name": "_mapState",
                     "providing": "ct.mapping.map.MapState",
@@ -111,87 +91,6 @@
                 "togglable": true,
                 "iconClass": "icon-chart-bar"
             }
-        },
-        {
-            "name": "GeometryWidgetFactory",
-            "provides": [
-                "dijit.Widget",
-                "ct.framework.api.EventHandler"
-            ],
-            "properties": {
-                "widgetRole": "geometryAnalysisDistributionWidget"
-            },
-            "instanceFactory": true,
-            "immediate": true,
-            "references": [
-                {
-                    "name": "store",
-                    "providing": "ct.api.Store",
-                    "cardinality": "1..n",
-                    "filter": "(useIn=selection)"
-                },
-                {
-                    "name": "_mapState",
-                    "providing": "ct.mapping.map.MapState",
-                    "policy": "static"
-                },
-                {
-                    "name": "_tool",
-                    "providing": "ct.tools.Tool",
-                    "filter": "(id=geometryAnalysisDistributionTool)"
-                },
-                {
-                    "name": "_dataModel",
-                    "providing": "ct.resultcenter.DataModel"
-                },
-                {
-                    "name": "_drawGeometryHandler",
-                    "providing": "dn_analysisdistribution.DrawGeometryHandler"
-                },
-                {
-                    "name": "_map",
-                    "providing": "ct.mapping.map.Map"
-                }, {
-                    "name": "_windowManager",
-                    "providing": "ct.framework.api.WindowManager"
-                }
-            ]
-        },
-        {
-            "name": "test",
-            "impl": "ct/tools/Tool",
-            "provides": ["ct.tools.Tool"],
-            "propertiesConstructor": true,
-            "properties": {
-                "id": "geometryAnalysisDistributionTool",
-                "toolRole": "toolset",
-                "title": "Geometry-Analysis/Distribution Tool",
-                "tooltip": "Geometry-Analysis/Distribution Tool",
-                "togglable": true,
-                "iconClass": "icon-visibility-visible"
-            }
-        },
-        {
-            "name": "DrawGeometryHandler",
-            "provides": "dn_analysisdistribution.DrawGeometryHandler",
-            "references": [
-                {
-                    "name": "_eventService",
-                    "providing": "ct.framework.api.EventService"
-                },
-                {
-                    "name": "_drawController",
-                    "providing": "ct.mapping.edit.DrawStateController"
-                },
-                {
-                    "name": "_mapModel",
-                    "providing": "ct.mapping.map.MapModel"
-                },
-                {
-                    "name": "_logService",
-                    "providing": "ct.framework.api.LogService"
-                }
-            ]
         }
     ]
 }
