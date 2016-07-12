@@ -20,7 +20,7 @@ Change the mapapps.remote.base in the build.properties file and run:
 
 Installation Guide
 ------------------
-- At first, you need to add the bundles "agssearch" and "dn_analysis_distribution" to your app.
+- At first, you need to add the bundles "agssearch" and "dn_analysisdistribution" to your app.
 - After that, add a MapServer to your app that got CodedValues (Content -> Services Management). Example
 - Now you can add the new service to the Search&Selection bundle. (Search&Selection -> ArcGIS for Server Search&Selection)
 - Finally change the default store in the Analysis/Distribution config and restart the app. (Tools -> Analysis/Distribution Config)
