@@ -1,535 +1,545 @@
 {
-    "properties": {
-        "title": "Analysis / Distribution Sample"
+  "properties": {
+    "title": "Analysis / Distribution Sample",
+    "amdPackages": "apprt@^3.2.1"
+  },
+  "load": {
+    "bundleLocations": [
+      "localbundles",
+      "bundles"
+    ],
+    "allowedBundles": [
+      "wizard@^3.2.1",
+      "custominfo@^3.2.1",
+      "dataform@^3.2.1",
+      "parametermanager@^3.2.1",
+      "splashscreen@^3.2.1",
+      "toolset@^3.2.1",
+      "windowmanager@^3.2.1",
+      "contentviewer@^3.2.1",
+      "coordinatetransformer@^3.2.1",
+      "map@^3.2.1",
+      "legend@^3.2.1",
+      "resultcenter@^3.2.1",
+      "agssearch@^3.2.1",
+      "system@^3.2.1",
+      "templatelayout@^3.2.1",
+      "templates@^3.2.1",
+      "themes@^3.2.1",
+      "banner@^3.2.1",
+      "console@^3.2.1",
+      "dn_analysisdistribution"
+    ]
+  },
+  "bundles": {
+    "dn_analysisdistribution": {
+      "WidgetFactory": {
+        "storeId": "auskunftStore",
+        "chartType": "column",
+        "useExtent": false
+      }
     },
-    "load": {
-        "bundleLocations": ["localbundles", "bundles"],
-        "allowedBundles": [
-            "wizard",
-            "dn_analysisdistribution",
-            "custominfo",
-            "dataform",
-            "parametermanager",
-            "splashscreen",
-            "toolset",
-            "windowmanager",
-            "contentviewer",
-            "coordinatetransformer",
-            "map",
-            "legend",
-            "resultcenter",
-            "agssearch",
-            "system",
-            "templatelayout",
-            "templates",
-            "themes",
-            "banner",
-            "console"
-        ]
-    },
-    "bundles": {
-        "dn_analysisdistribution": {
-            "WidgetFactory": {
-                "storeId": "auskunftStore",
-                "chartType": "column",
-                "useExtent": false
-            }
+    "agssearch": {
+      "AGSStore": [
+        {
+          "title": "Stoerungen",
+          "description": "",
+          "idProperty": "objectid",
+          "url": "http://services.conterra.de/arcgis/rest/services/training/stoerungen/MapServer/0",
+          "useIn": [
+            "selection"
+          ],
+          "filterOptions": {
+            "suggestContains": true
+          },
+          "enablePagination": true,
+          "fetchIdProperty": true,
+          "id": "auskunftStore"
         },
-        "agssearch": {
-            "AGSStore": [
-                {
-                    "title": "Stoerungen",
-                    "description": "",
-                    "idProperty": "objectid",
-                    "url": "http://services.conterra.de/arcgis/rest/services/training/stoerungen/MapServer/0",
-                    "useIn": ["selection"],
-                    "filterOptions": {
-                        "suggestContains": true
-                    },
-                    "enablePagination": true,
-                    "fetchIdProperty": true,
-                    "id": "auskunftStore"
-                },
-                {
-                    "title": "State of bathing waters (Bathing water quality)",
-                    "description": "Pointlayer is based on Bathing water directive (BWD) database(bathing water locations data as reported for 2014 bathing season). All data in the layer are aggregated by bathing water monitoring locations and bathing waters quality categories for inland and coastal bathing waters together. Layer in the map is visible on scales range from 1:5,000,000 and more detalied. In such cases, individual bathing water monitoring sites are visualized and colored according achived quality class. Symbol size depends on the map scale.",
-                    "omniSearchLabelAttr": "Name",
-                    "omniSearchSearchAttr": "Name",
-                    "idProperty": "OBJECTID",
-                    "url": "http://water.discomap.eea.europa.eu/arcgis/rest/services/BathingWater/BathingWater_Dyna_WM/MapServer/3",
-                    "useIn": [
-                        "omnisearch",
-                        "selection"
-                    ],
-                    "filterOptions": {
-                        "suggestContains": true
-                    },
-                    "omniSearchTypingDelay": 500,
-                    "omniSearchPageSize": 20,
-                    "omniSearchDefaultLabel": "Suchbegriff eingeben...",
-                    "fetchIdProperty": true,
-                    "enablePagination": false,
-                    "id": "_AGS_STORE_1446801354388"
-                },
-                {
-                    "title": "Bundesländer 2015 (Deutschland Bundesländergrenzen 2015)",
-                    "description": "",
-                    "omniSearchLabelAttr": "RS",
-                    "omniSearchSearchAttr": "RS",
-                    "idProperty": "OBJECTID",
-                    "url": "https://services.arcgis.com/OLiydejKCZTGhvWg/ArcGIS/rest/services/Bundesländergrenzen_2015_Statistik/FeatureServer/0",
-                    "useIn": [
-                        "omnisearch",
-                        "selection"
-                    ],
-                    "filterOptions": {
-                        "suggestContains": true
-                    },
-                    "omniSearchTypingDelay": 500,
-                    "omniSearchPageSize": 20,
-                    "omniSearchDefaultLabel": "Suchbegriff eingeben...",
-                    "fetchIdProperty": true,
-                    "enablePagination": false,
-                    "id": "_AGS_STORE_1447515012761"
-                },
-                {
-                    "title": "Kreise 2015 (Deutschland Kreisgrenzen 2015)",
-                    "description": "",
-                    "omniSearchLabelAttr": "RS",
-                    "omniSearchSearchAttr": "RS",
-                    "idProperty": "OBJECTID",
-                    "url": "https://services.arcgis.com/OLiydejKCZTGhvWg/ArcGIS/rest/services/Kreisegrenzen_2015_Statistik/FeatureServer/0",
-                    "useIn": [
-                        "omnisearch",
-                        "selection"
-                    ],
-                    "filterOptions": {
-                        "suggestContains": true
-                    },
-                    "omniSearchTypingDelay": 500,
-                    "omniSearchPageSize": 20,
-                    "omniSearchDefaultLabel": "Suchbegriff eingeben...",
-                    "fetchIdProperty": true,
-                    "enablePagination": false,
-                    "id": "_AGS_STORE_1447515265638"
-                },
-                {
-                    "title": "Gemeindegrenzen 2015 (Deutschland Gemeindegrenzen 2015)",
-                    "description": "",
-                    "omniSearchLabelAttr": "RS",
-                    "omniSearchSearchAttr": "RS",
-                    "idProperty": "OBJECTID",
-                    "url": "https://services.arcgis.com/OLiydejKCZTGhvWg/ArcGIS/rest/services/Gemeindegrenzen_2015/FeatureServer/0",
-                    "useIn": [
-                        "omnisearch",
-                        "selection"
-                    ],
-                    "filterOptions": {
-                        "suggestContains": true
-                    },
-                    "omniSearchTypingDelay": 500,
-                    "omniSearchPageSize": 20,
-                    "omniSearchDefaultLabel": "Suchbegriff eingeben...",
-                    "fetchIdProperty": true,
-                    "enablePagination": false,
-                    "id": "_AGS_STORE_1447515368626"
-                }
-            ],
-            "enabled": true
+        {
+          "title": "State of bathing waters (Bathing water quality)",
+          "description": "Pointlayer is based on Bathing water directive (BWD) database(bathing water locations data as reported for 2014 bathing season). All data in the layer are aggregated by bathing water monitoring locations and bathing waters quality categories for inland and coastal bathing waters together. Layer in the map is visible on scales range from 1:5,000,000 and more detalied. In such cases, individual bathing water monitoring sites are visualized and colored according achived quality class. Symbol size depends on the map scale.",
+          "omniSearchLabelAttr": "Name",
+          "omniSearchSearchAttr": "Name",
+          "idProperty": "OBJECTID",
+          "url": "http://water.discomap.eea.europa.eu/arcgis/rest/services/BathingWater/BathingWater_Dyna_WM/MapServer/3",
+          "useIn": [
+            "omnisearch",
+            "selection"
+          ],
+          "filterOptions": {
+            "suggestContains": true
+          },
+          "omniSearchTypingDelay": 500,
+          "omniSearchPageSize": 20,
+          "omniSearchDefaultLabel": "Suchbegriff eingeben...",
+          "fetchIdProperty": true,
+          "enablePagination": false,
+          "id": "_AGS_STORE_1446801354388"
         },
-        "banner": {
-            "BannerWidget": {
-                "label": "Developer Network",
-                "image": "https://www.conterra.de/~/media/conterra/images/site_logos/conterra-logo.ashx",
-                "imagePosition": "above",
-                "link": "http://developernetwork.conterra.de/"
-            }
+        {
+          "title": "Bundesländer 2015 (Deutschland Bundesländergrenzen 2015)",
+          "description": "",
+          "omniSearchLabelAttr": "RS",
+          "omniSearchSearchAttr": "RS",
+          "idProperty": "OBJECTID",
+          "url": "https://services.arcgis.com/OLiydejKCZTGhvWg/ArcGIS/rest/services/Bundesländergrenzen_2015_Statistik/FeatureServer/0",
+          "useIn": [
+            "omnisearch",
+            "selection"
+          ],
+          "filterOptions": {
+            "suggestContains": true
+          },
+          "omniSearchTypingDelay": 500,
+          "omniSearchPageSize": 20,
+          "omniSearchDefaultLabel": "Suchbegriff eingeben...",
+          "fetchIdProperty": true,
+          "enablePagination": false,
+          "id": "_AGS_STORE_1447515012761"
         },
-        "console": {
-            "enabled": true
+        {
+          "title": "Kreise 2015 (Deutschland Kreisgrenzen 2015)",
+          "description": "",
+          "omniSearchLabelAttr": "RS",
+          "omniSearchSearchAttr": "RS",
+          "idProperty": "OBJECTID",
+          "url": "https://services.arcgis.com/OLiydejKCZTGhvWg/ArcGIS/rest/services/Kreisegrenzen_2015_Statistik/FeatureServer/0",
+          "useIn": [
+            "omnisearch",
+            "selection"
+          ],
+          "filterOptions": {
+            "suggestContains": true
+          },
+          "omniSearchTypingDelay": 500,
+          "omniSearchPageSize": 20,
+          "omniSearchDefaultLabel": "Suchbegriff eingeben...",
+          "fetchIdProperty": true,
+          "enablePagination": false,
+          "id": "_AGS_STORE_1447515265638"
         },
-        "contentviewer": {
-            "enabled": true
-        },
-        "coordinatetransformer": {
-            "enabled": true
-        },
-        "custominfo": {
-            "enabled": true
-        },
-        "dataform": {
-            "enabled": true
-        },
-        "infoviewer": {
-            "enabled": true
-        },
-        "legend": {
-            "enabled": true
-        },
-        "map": {
-            "MapModelFactory": {
-                "_configData": {
-                    "maps": [
-                        {
-                            "id": "default",
-                            "glass_pane": [
-                                {
-                                    "id": "settlements",
-                                    "enabled": true,
-                                    "maptip": {
-                                        "content": "{name2}",
-                                        "dimensions": {
-                                            "width": 100,
-                                            "height": 28
-                                        }
-                                    },
-                                    "infoTemplate": {
-                                        "title": "${name}",
-                                        "content": "<p><b>${name2}<br />${name3}</b></p><p>${street}<br />${plz_city}</p><p>Telefon ${tel}<br /><a href='mailto:${email}'>${email}</a></p><p><a href='${link}' target='_blank'>Homepage aufrufen</a></p>",
-                                        "dimensions": {
-                                            "width": 250,
-                                            "height": 250
-                                        }
-                                    },
-                                    "graphics": [
-                                        {
-                                            "geometry": {
-                                                "x": 851833,
-                                                "y": 6788378,
-                                                "spatialReference": {
-                                                    "wkid": 3857
-                                                }
-                                            },
-                                            "attributes": {
-                                                "name": "con terra",
-                                                "name2": "con terra GmbH",
-                                                "name3": "",
-                                                "street": "Martin-Luther-King-Weg 24",
-                                                "plz_city": "DE-48155 Muenster",
-                                                "tel": "+49 251 74745 0",
-                                                "email": "conterra@conterra.de",
-                                                "link": "http://www.conterra.de/"
-                                            },
-                                            "symbol": {
-                                                "color": [
-                                                    221,
-                                                    0,
-                                                    85,
-                                                    230
-                                                ],
-                                                "size": 12,
-                                                "angle": 0,
-                                                "xoffset": 0,
-                                                "yoffset": 0,
-                                                "type": "esriSMS",
-                                                "style": "esriSMSSquare",
-                                                "outline": {
-                                                    "color": [
-                                                        255,
-                                                        255,
-                                                        255,
-                                                        255
-                                                    ],
-                                                    "width": 0,
-                                                    "type": "esriSLS",
-                                                    "style": "esriSLSSolid"
-                                                }
-                                            }
-                                        }
-                                    ]
-                                }
-                            ],
-                            "operationalLayer": [
-                                {
-                                    "id": "service_32645_1437731870775",
-                                    "title": "Stoerungen",
-                                    "enabled": true,
-                                    "service": "service_32645",
-                                    "category": {
-                                        "title": "Stoerungen",
-                                        "description": "Karte mit fiktiven St\u00F6rungsmeldungen f\u00FCr map.apps Trainings.",
-                                        "imgUrl": ""
-                                    },
-                                    "layers": ["*"],
-                                    "opacity": 1
-                                }
-                            ],
-                            "baseLayer": [
-                                {
-                                    "title": "Topographische Karte",
-                                    "enabled": true,
-                                    "service": "worldtopo",
-                                    "children": [
-                                        {
-                                            "layer": "10",
-                                            "enabled": true
-                                        }
-                                    ],
-                                    "category": {
-                                        "title": "Topographische Karte",
-                                        "description": "Eine topographische Weltkarte",
-                                        "imgUrl": "http://localhost:8080/ct-mapapps-webapp-3.0.1/js/bundles/mapcore/map/config/styles/images/defaultCover.png"
-                                    },
-                                    "id": "worldtopo_1437731843967"
-                                }
-                            ]
-                        }
-                    ]
-                }
-            },
-            "MapState": {
-                "initialExtent": {
-                    "xmin": 827809.8154484094,
-                    "xmax": 888959.4380764689,
-                    "ymin": 6771304.38617298,
-                    "ymax": 6812427.50739035,
-                    "wkid": 3857
-                }
-            },
-            "MapWidgetFactory": {
-                "esriMapOpts": {
-                    "slider": false,
-                    "nav": false,
-                    "logo": true,
-                    "sliderStyle": "small",
-                    "doubleClickZoom": true,
-                    "clickRecenter": true,
-                    "pan": true,
-                    "rubberBandZoom": true,
-                    "keyboardNavigation": true,
-                    "scrollWheelZoom": true,
-                    "sliderPosition": "bottom-right",
-                    "displayGraphicsOnPan": true,
-                    "fadeOnZoom": true,
-                    "showAttribution": true,
-                    "sliderOrientation": "vertical",
-                    "sliderLabels": [""],
-                    "navigationMode": "css-transforms"
-                }
-            },
-            "MappingResourceRegistryFactory": {
-                "_knownServices": {
-                    "services": [
-                        {
-                            "id": "worldimage",
-                            "url": "http://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer",
-                            "type": "AGS_TILED",
-                            "title": "Luftbild",
-                            "description": "Luftbildaufnahmen der gesamten Welt",
-                            "layers": [
-                                {
-                                    "id": "0",
-                                    "title": "World Imagery"
-                                },
-                                {
-                                    "id": "1",
-                                    "title": "Low Resolution 15m Imagery"
-                                },
-                                {
-                                    "id": "2",
-                                    "title": "High Resolution 60cm Imagery"
-                                },
-                                {
-                                    "id": "3",
-                                    "title": "High Resolution 30cm Imagery"
-                                }
-                            ]
-                        },
-                        {
-                            "id": "worldtopo",
-                            "url": "http://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer",
-                            "type": "AGS_TILED",
-                            "title": "Topographische Karte",
-                            "description": "Eine topographische Weltkarte",
-                            "layers": [
-                                {
-                                    "id": "0",
-                                    "title": "Topographic Info"
-                                },
-                                {
-                                    "id": "1",
-                                    "title": "Elevation (m)",
-                                    "parentId": "0"
-                                },
-                                {
-                                    "id": "2",
-                                    "title": "Elevation (ft)",
-                                    "parentId": "0"
-                                },
-                                {
-                                    "id": "3",
-                                    "title": "Slope",
-                                    "parentId": "0"
-                                },
-                                {
-                                    "id": "4",
-                                    "title": "Aspect",
-                                    "parentId": "0"
-                                },
-                                {
-                                    "id": "5",
-                                    "title": "Places Info"
-                                },
-                                {
-                                    "id": "6",
-                                    "title": "Place Names (Country Level)",
-                                    "parentId": "5",
-                                    "maxScale": 80000000
-                                },
-                                {
-                                    "id": "7",
-                                    "title": "Place Names (State Level)",
-                                    "parentId": "5",
-                                    "maxScale": 80000001
-                                },
-                                {
-                                    "id": "8",
-                                    "title": "Place Names (County Level)",
-                                    "parentId": "5",
-                                    "maxScale": 1500001
-                                },
-                                {
-                                    "id": "9",
-                                    "title": "Place Names (City Level)",
-                                    "parentId": "5",
-                                    "maxScale": 399999
-                                },
-                                {
-                                    "id": "10",
-                                    "title": "Citations"
-                                }
-                            ]
-                        },
-                        {
-                            "id": "streets",
-                            "description": "Eine detaillierte Stra\u00DFenkarte",
-                            "url": "http://services.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer",
-                            "type": "AGS_TILED",
-                            "title": "Stra\u00DFen",
-                            "layers": [
-                                {
-                                    "id": "0",
-                                    "title": "Stra\u00DFen"
-                                }
-                            ]
-                        },
-                        {
-                            "id": "service_32645",
-                            "url": "http://services.conterra.de/arcgis/rest/services/training/stoerungen/MapServer",
-                            "type": "AGS_DYNAMIC",
-                            "title": "Stoerungen",
-                            "description": "Karte mit fiktiven St\u00F6rungsmeldungen f\u00FCr map.apps Trainings.",
-                            "layers": [
-                                {
-                                    "id": "0",
-                                    "title": "St\u00F6rungen",
-                                    "enabled": true
-                                },
-                                {
-                                    "id": "1",
-                                    "title": "Status",
-                                    "enabled": true
-                                }
-                            ],
-                            "options": {}
-                        }
-                    ]
-                }
-            },
-            "enabled": true
-        },
-        "mapflow": {
-            "enabled": true
-        },
-        "maptip": {
-            "enabled": true
-        },
-        "mobiletoc": {
-            "enabled": true
-        },
-        "mobileview": {
-            "enabled": true
-        },
-        "notifier": {
-            "enabled": true
-        },
-        "parametermanager": {
-            "enabled": true
-        },
-        "selection": {
-            "SelectionAction": {
-                "autoDeactivateTool": true
-            },
-            "enabled": true
-        },
-        "splashscreen": {
-            "enabled": true
-        },
-        "templatelayout": {
-            "enabled": true
-        },
-        "templates": {
-            "TemplateModel": {
-                "_selectedTemplate": "seasons",
-                "_templates": [
-                    {
-                        "name": "seasons",
-                        "widgets": [
-                            {
-                                "widgetRole": "analysisDistributionWidget",
-                                "window": {
-                                    "marginBox": {
-                                        "t": 120,
-                                        "r": 20,
-                                        "w": 450,
-                                        "h": 620
-                                    }
-                                }
-                            }
-                        ]
-                    }
-                ]
-            },
-            "TemplateSelector": {
-                "componentEnabled": false
-            },
-            "enabled": true
-        },
-        "themes": {
-            "ThemeModel": {
-                "_selectedTheme": "everlasting"
-            },
-            "ThemeSelector": {
-                "componentEnabled": false
-            },
-            "enabled": true
-        },
-        "toolset": {
-            "ToolsetManager": {
-                "toolsets": [
-                    {
-                        "id": "dropdown1",
-                        "title": "Werkzeuge",
-                        "tools": [
-                            "analysisDistributionTool"
-                        ],
-                        "container": "map",
-                        "__isDirty": true,
-                        "position": {
-                            "rel_t": 20,
-                            "rel_l": 20
-                        },
-                        "cssClass": "notitle",
-                        "windowType": "fixed",
-                        "tooltip": "Werkzeuge",
-                        "max_horizontal": 1
-                    }
-                ]
-            },
-            "enabled": true
-        },
-        "windowmanager": {
-            "enabled": true
+        {
+          "title": "Gemeindegrenzen 2015 (Deutschland Gemeindegrenzen 2015)",
+          "description": "",
+          "omniSearchLabelAttr": "RS",
+          "omniSearchSearchAttr": "RS",
+          "idProperty": "OBJECTID",
+          "url": "https://services.arcgis.com/OLiydejKCZTGhvWg/ArcGIS/rest/services/Gemeindegrenzen_2015/FeatureServer/0",
+          "useIn": [
+            "omnisearch",
+            "selection"
+          ],
+          "filterOptions": {
+            "suggestContains": true
+          },
+          "omniSearchTypingDelay": 500,
+          "omniSearchPageSize": 20,
+          "omniSearchDefaultLabel": "Suchbegriff eingeben...",
+          "fetchIdProperty": true,
+          "enablePagination": false,
+          "id": "_AGS_STORE_1447515368626"
         }
+      ],
+      "enabled": true
+    },
+    "banner": {
+      "BannerWidget": {
+        "label": "Developer Network",
+        "image": "https://www.conterra.de/~/media/conterra/images/site_logos/conterra-logo.ashx",
+        "imagePosition": "above",
+        "link": "http://developernetwork.conterra.de/"
+      }
+    },
+    "console": {
+      "enabled": true
+    },
+    "contentviewer": {
+      "enabled": true
+    },
+    "coordinatetransformer": {
+      "enabled": true
+    },
+    "custominfo": {
+      "enabled": true
+    },
+    "dataform": {
+      "enabled": true
+    },
+    "infoviewer": {
+      "enabled": true
+    },
+    "legend": {
+      "enabled": true
+    },
+    "map": {
+      "MapModelFactory": {
+        "_configData": {
+          "maps": [
+            {
+              "id": "default",
+              "glass_pane": [
+                {
+                  "id": "settlements",
+                  "enabled": true,
+                  "maptip": {
+                    "content": "{name2}",
+                    "dimensions": {
+                      "width": 100,
+                      "height": 28
+                    }
+                  },
+                  "infoTemplate": {
+                    "title": "${name}",
+                    "content": "<p><b>${name2}<br />${name3}</b></p><p>${street}<br />${plz_city}</p><p>Telefon ${tel}<br /><a href='mailto:${email}'>${email}</a></p><p><a href='${link}' target='_blank'>Homepage aufrufen</a></p>",
+                    "dimensions": {
+                      "width": 250,
+                      "height": 250
+                    }
+                  },
+                  "graphics": [
+                    {
+                      "geometry": {
+                        "x": 851833,
+                        "y": 6788378,
+                        "spatialReference": {
+                          "wkid": 3857
+                        }
+                      },
+                      "attributes": {
+                        "name": "con terra",
+                        "name2": "con terra GmbH",
+                        "name3": "",
+                        "street": "Martin-Luther-King-Weg 24",
+                        "plz_city": "DE-48155 Muenster",
+                        "tel": "+49 251 74745 0",
+                        "email": "conterra@conterra.de",
+                        "link": "http://www.conterra.de/"
+                      },
+                      "symbol": {
+                        "color": [
+                          221,
+                          0,
+                          85,
+                          230
+                        ],
+                        "size": 12,
+                        "angle": 0,
+                        "xoffset": 0,
+                        "yoffset": 0,
+                        "type": "esriSMS",
+                        "style": "esriSMSSquare",
+                        "outline": {
+                          "color": [
+                            255,
+                            255,
+                            255,
+                            255
+                          ],
+                          "width": 0,
+                          "type": "esriSLS",
+                          "style": "esriSLSSolid"
+                        }
+                      }
+                    }
+                  ]
+                }
+              ],
+              "operationalLayer": [
+                {
+                  "id": "service_32645_1437731870775",
+                  "title": "Stoerungen",
+                  "enabled": true,
+                  "service": "service_32645",
+                  "category": {
+                    "title": "Stoerungen",
+                    "description": "Karte mit fiktiven St\u00F6rungsmeldungen f\u00FCr map.apps Trainings.",
+                    "imgUrl": ""
+                  },
+                  "layers": [
+                    "*"
+                  ],
+                  "opacity": 1
+                }
+              ],
+              "baseLayer": [
+                {
+                  "title": "Topographische Karte",
+                  "enabled": true,
+                  "service": "worldtopo",
+                  "children": [
+                    {
+                      "layer": "10",
+                      "enabled": true
+                    }
+                  ],
+                  "category": {
+                    "title": "Topographische Karte",
+                    "description": "Eine topographische Weltkarte",
+                    "imgUrl": "http://localhost:8080/ct-mapapps-webapp-3.0.1/js/bundles/mapcore/map/config/styles/images/defaultCover.png"
+                  },
+                  "id": "worldtopo_1437731843967"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "MapState": {
+        "initialExtent": {
+          "xmin": 827809.8154484094,
+          "xmax": 888959.4380764689,
+          "ymin": 6771304.38617298,
+          "ymax": 6812427.50739035,
+          "wkid": 3857
+        }
+      },
+      "MapWidgetFactory": {
+        "esriMapOpts": {
+          "slider": false,
+          "nav": false,
+          "logo": true,
+          "sliderStyle": "small",
+          "doubleClickZoom": true,
+          "clickRecenter": true,
+          "pan": true,
+          "rubberBandZoom": true,
+          "keyboardNavigation": true,
+          "scrollWheelZoom": true,
+          "sliderPosition": "bottom-right",
+          "displayGraphicsOnPan": true,
+          "fadeOnZoom": true,
+          "showAttribution": true,
+          "sliderOrientation": "vertical",
+          "sliderLabels": [
+            ""
+          ],
+          "navigationMode": "css-transforms"
+        }
+      },
+      "MappingResourceRegistryFactory": {
+        "_knownServices": {
+          "services": [
+            {
+              "id": "worldimage",
+              "url": "http://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer",
+              "type": "AGS_TILED",
+              "title": "Luftbild",
+              "description": "Luftbildaufnahmen der gesamten Welt",
+              "layers": [
+                {
+                  "id": "0",
+                  "title": "World Imagery"
+                },
+                {
+                  "id": "1",
+                  "title": "Low Resolution 15m Imagery"
+                },
+                {
+                  "id": "2",
+                  "title": "High Resolution 60cm Imagery"
+                },
+                {
+                  "id": "3",
+                  "title": "High Resolution 30cm Imagery"
+                }
+              ]
+            },
+            {
+              "id": "worldtopo",
+              "url": "http://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer",
+              "type": "AGS_TILED",
+              "title": "Topographische Karte",
+              "description": "Eine topographische Weltkarte",
+              "layers": [
+                {
+                  "id": "0",
+                  "title": "Topographic Info"
+                },
+                {
+                  "id": "1",
+                  "title": "Elevation (m)",
+                  "parentId": "0"
+                },
+                {
+                  "id": "2",
+                  "title": "Elevation (ft)",
+                  "parentId": "0"
+                },
+                {
+                  "id": "3",
+                  "title": "Slope",
+                  "parentId": "0"
+                },
+                {
+                  "id": "4",
+                  "title": "Aspect",
+                  "parentId": "0"
+                },
+                {
+                  "id": "5",
+                  "title": "Places Info"
+                },
+                {
+                  "id": "6",
+                  "title": "Place Names (Country Level)",
+                  "parentId": "5",
+                  "maxScale": 80000000
+                },
+                {
+                  "id": "7",
+                  "title": "Place Names (State Level)",
+                  "parentId": "5",
+                  "maxScale": 80000001
+                },
+                {
+                  "id": "8",
+                  "title": "Place Names (County Level)",
+                  "parentId": "5",
+                  "maxScale": 1500001
+                },
+                {
+                  "id": "9",
+                  "title": "Place Names (City Level)",
+                  "parentId": "5",
+                  "maxScale": 399999
+                },
+                {
+                  "id": "10",
+                  "title": "Citations"
+                }
+              ]
+            },
+            {
+              "id": "streets",
+              "description": "Eine detaillierte Stra\u00DFenkarte",
+              "url": "http://services.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer",
+              "type": "AGS_TILED",
+              "title": "Stra\u00DFen",
+              "layers": [
+                {
+                  "id": "0",
+                  "title": "Stra\u00DFen"
+                }
+              ]
+            },
+            {
+              "id": "service_32645",
+              "url": "http://services.conterra.de/arcgis/rest/services/training/stoerungen/MapServer",
+              "type": "AGS_DYNAMIC",
+              "title": "Stoerungen",
+              "description": "Karte mit fiktiven St\u00F6rungsmeldungen f\u00FCr map.apps Trainings.",
+              "layers": [
+                {
+                  "id": "0",
+                  "title": "St\u00F6rungen",
+                  "enabled": true
+                },
+                {
+                  "id": "1",
+                  "title": "Status",
+                  "enabled": true
+                }
+              ],
+              "options": {}
+            }
+          ]
+        }
+      },
+      "enabled": true
+    },
+    "mapflow": {
+      "enabled": true
+    },
+    "maptip": {
+      "enabled": true
+    },
+    "mobiletoc": {
+      "enabled": true
+    },
+    "mobileview": {
+      "enabled": true
+    },
+    "notifier": {
+      "enabled": true
+    },
+    "parametermanager": {
+      "enabled": true
+    },
+    "selection": {
+      "SelectionAction": {
+        "autoDeactivateTool": true
+      },
+      "enabled": true
+    },
+    "splashscreen": {
+      "enabled": true
+    },
+    "templatelayout": {
+      "enabled": true
+    },
+    "templates": {
+      "TemplateModel": {
+        "_selectedTemplate": "seasons",
+        "_templates": [
+          {
+            "name": "seasons",
+            "widgets": [
+              {
+                "widgetRole": "analysisDistributionWidget",
+                "window": {
+                  "marginBox": {
+                    "t": 120,
+                    "r": 20,
+                    "w": 450,
+                    "h": 620
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "TemplateSelector": {
+        "componentEnabled": false
+      },
+      "enabled": true
+    },
+    "themes": {
+      "ThemeModel": {
+        "_selectedTheme": "everlasting"
+      },
+      "ThemeSelector": {
+        "componentEnabled": false
+      },
+      "enabled": true
+    },
+    "toolset": {
+      "ToolsetManager": {
+        "toolsets": [
+          {
+            "id": "dropdown1",
+            "title": "Werkzeuge",
+            "tools": [
+              "analysisDistributionTool"
+            ],
+            "container": "map",
+            "__isDirty": true,
+            "position": {
+              "rel_t": 20,
+              "rel_l": 20
+            },
+            "cssClass": "notitle",
+            "windowType": "fixed",
+            "tooltip": "Werkzeuge",
+            "max_horizontal": 1
+          }
+        ]
+      },
+      "enabled": true
+    },
+    "windowmanager": {
+      "enabled": true
     }
+  }
 }

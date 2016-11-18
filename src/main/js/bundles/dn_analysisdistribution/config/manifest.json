@@ -1,89 +1,106 @@
 {
-    "Bundle-SymbolicName": "dn_analysisdistribution-config",
-    "Bundle-Version": "1.0.3-SNAPSHOT",
-    "Bundle-Name": "${bundleName}",
-    "Bundle-Description": "${bundleDescription}",
-    "Bundle-Vendor": "con terra GmbH",
-    "Require-Bundle": [
-        {
-            "name": "dataform"
-        }, {
-            "name": "wizard"
+  "Bundle-SymbolicName": "dn_analysisdistribution-config",
+  "Bundle-Version": "1.0.3-SNAPSHOT",
+  "Bundle-Name": "${bundleName}",
+  "Bundle-Description": "${bundleDescription}",
+  "Bundle-Vendor": "con terra GmbH",
+  "Require-Bundle": [
+    {
+      "name": "dataform",
+      "version": "^3.2.1"
+    },
+    {
+      "name": "wizard",
+      "version": "^3.2.1"
+    }
+  ],
+  "Components": [
+    {
+      "name": "BuilderEntry",
+      "impl": "ct/Stateful",
+      "provides": [
+        "wizard.MenuEntry"
+      ],
+      "propertiesConstructor": true,
+      "properties": {
+        "parentNodeId": "appBuilderToolsNode",
+        "menuNode": {
+          "priority": 10,
+          "title": "${windowTitle}",
+          "widget": "analysisDistributionBuilderWidget",
+          "iconUrl": "resource('styles/images/bundleIcon.png')"
         }
-    ],
-    "Components": [
+      }
+    },
+    {
+      "name": "BuilderWidget",
+      "impl": "wizard/DataFormBuilderWidgetFactory",
+      "provides": [
+        "dijit.wizard.Widget"
+      ],
+      "immediate": true,
+      "instanceFactory": true,
+      "properties": {
+        "dataformFile": "resource('./DataForm.json')",
+        "bid": "dn_analysisdistribution",
+        "pid": "dn_analysisdistribution-WidgetFactory",
+        "id": "analysisDistributionBuilderWidget",
+        "defaultProperties": {
+          "storeId": "defineInAppJson",
+          "enableStoreSelect": true,
+          "chartType": "column",
+          "enableLegend": true,
+          "spatialOperator": "$intersects",
+          "useExtent": false,
+          "enableChartSwitch": true,
+          "enableExtentSwitch": true
+        },
+        "description": "${description}"
+      },
+      "references": [
         {
-            "name": "BuilderEntry",
-            "impl": "ct/Stateful",
-            "provides": ["wizard.MenuEntry"],
-            "propertiesConstructor": true,
-            "properties": {
-                "parentNodeId": "appBuilderToolsNode",
-                "menuNode": {
-                    "priority": 10,
-                    "title": "${windowTitle}",
-                    "widget": "analysisDistributionBuilderWidget",
-                    "iconUrl": "resource('styles/images/bundleIcon.png')"
-                }
-            }
+          "name": "_configAdminService",
+          "providing": "ct.framework.api.ConfigurationAdmin"
         },
         {
-            "name": "BuilderWidget",
-            "impl": "wizard/DataFormBuilderWidgetFactory",
-            "provides": ["dijit.wizard.Widget"],
-            "immediate": true,
-            "instanceFactory": true,
-            "properties": {
-                "dataformFile": "resource('./DataForm.json')",
-                "bid": "dn_analysisdistribution",
-                "pid": "dn_analysisdistribution-WidgetFactory",
-                "id": "analysisDistributionBuilderWidget",
-                "defaultProperties": {
-                    "storeId": "defineInAppJson",
-                    "enableStoreSelect": true,
-                    "chartType": "column",
-                    "enableLegend": true,
-                    "spatialOperator": "$intersects",
-                    "useExtent": false,
-                    "enableChartSwitch": true,
-                    "enableExtentSwitch": true
-                },
-                "description": "${description}"
-            },
-            "references": [{
-                    "name": "_configAdminService",
-                    "providing": "ct.framework.api.ConfigurationAdmin"
-                }, {
-                    "name": "_dataformService",
-                    "providing": "dataform.DataFormService"
-                }]
-        }, {
-            "name": "StoresStore",
-            "provides": ["ct.api.Store"],
-            "propertiesConstructor": true,
-            "properties": {
-                "useIn": ["dataform"],
-                "id": "storesStore01",
-                "data": [],
-                "metadata": {
-                    "fields": [
-                        {
-                            "name": "title"
-                        },
-                        {
-                            "name": "id"
-                        }
-                    ]
-                }
-            },
-            "references": [{
-                    "name": "data",
-                    "bind": "addStore",
-                    "unbind": "remove",
-                    "providing": "ct.api.Store",
-                    "cardinality": "1..n",
-                    "filter": "(|(useIn=selection)(useIn=omnisearch))"
-                }]
+          "name": "_dataformService",
+          "providing": "dataform.DataFormService"
         }
-    ]
+      ]
+    },
+    {
+      "name": "StoresStore",
+      "provides": [
+        "ct.api.Store"
+      ],
+      "propertiesConstructor": true,
+      "properties": {
+        "useIn": [
+          "dataform"
+        ],
+        "id": "storesStore01",
+        "data": [],
+        "metadata": {
+          "fields": [
+            {
+              "name": "title"
+            },
+            {
+              "name": "id"
+            }
+          ]
+        }
+      },
+      "references": [
+        {
+          "name": "data",
+          "bind": "addStore",
+          "unbind": "remove",
+          "providing": "ct.api.Store",
+          "cardinality": "1..n",
+          "filter": "(|(useIn=selection)(useIn=omnisearch))"
+        }
+      ]
+    }
+  ]
 }

@@ -1,96 +1,103 @@
 {
-    "Bundle-SymbolicName": "dn_analysisdistribution",
-    "Bundle-Version": "1.0.3-SNAPSHOT",
-    "Bundle-Name": "${bundleName}",
-    "Bundle-Description": "${bundleDescription}",
-    "Bundle-Vendor": "con terra GmbH",
-    "Product-Name": "devnet-mapapps-analysis-distribution",
-    "Config-Bundle-Location": "/config",
-    "Require-Bundle": [
+  "Bundle-SymbolicName": "dn_analysisdistribution",
+  "Bundle-Version": "1.0.3-SNAPSHOT",
+  "Bundle-Name": "${bundleName}",
+  "Bundle-Description": "${bundleDescription}",
+  "Bundle-Vendor": "con terra GmbH",
+  "Product-Name": "devnet-mapapps-analysis-distribution",
+  "Config-Bundle-Location": "/config",
+  "Require-Bundle": [
+    {
+      "name": "map",
+      "version": "^3.2.1"
+    },
+    {
+      "name": "agssearch",
+      "version": "^3.2.1"
+    },
+    {
+      "name": "resultcenter",
+      "version": "^3.2.1"
+    }
+  ],
+  "CSS-Themes-Extension": [
+    {
+      "name": "*",
+      "files": [
+        "./styles/style.css"
+      ]
+    }
+  ],
+  "layout-widgets": [
+    {
+      "role": "analysisDistributionWidget",
+      "window": {
+        "title": "${windowTitle}",
+        "marginBox": {
+          "w": 450,
+          "h": 620
+        },
+        "dockTool": "analysisDistributionTool",
+        "closable": true,
+        "minimizeOnClose": true,
+        "resizable": false
+      }
+    }
+  ],
+  "Components": [
+    {
+      "name": "WidgetFactory",
+      "provides": [
+        "dijit.Widget",
+        "ct.framework.api.EventHandler"
+      ],
+      "properties": {
+        "widgetRole": "analysisDistributionWidget",
+        "storeId": "defineInAppJson",
+        "enableStoreSelect": true,
+        "chartType": "column",
+        "enableLegend": true,
+        "spatialOperator": "$intersects",
+        "useExtent": false,
+        "enableChartSwitch": true,
+        "enableExtentSwitch": true
+      },
+      "instanceFactory": true,
+      "immediate": true,
+      "references": [
         {
-            "name": "map"
+          "name": "store",
+          "providing": "ct.api.Store",
+          "cardinality": "1..n",
+          "filter": "(useIn=selection)"
         },
         {
-            "name": "agssearch"
+          "name": "_mapState",
+          "providing": "ct.mapping.map.MapState",
+          "policy": "static"
         },
         {
-            "name": "resultcenter"
+          "name": "_tool",
+          "providing": "ct.tools.Tool",
+          "filter": "(id=analysisDistributionTool)"
         }
-    ],
-    "CSS-Themes-Extension": [
-        {
-            "name": "*",
-            "files": ["./styles/style.css"]
-        }
-    ],
-    "layout-widgets": [
-        {
-            "role": "analysisDistributionWidget",
-            "window": {
-                "title": "${windowTitle}",
-                "marginBox": {
-                    "w": 450,
-                    "h": 620
-                },
-                "dockTool": "analysisDistributionTool",
-                "closable": true,
-                "minimizeOnClose": true,
-                "resizable": false
-            }
-        }
-    ],
-    "Components": [
-        {
-            "name": "WidgetFactory",
-            "provides": [
-                "dijit.Widget",
-                "ct.framework.api.EventHandler"
-            ],
-            "properties": {
-                "widgetRole": "analysisDistributionWidget",
-                "storeId": "defineInAppJson",
-                "enableStoreSelect": true,
-                "chartType": "column",
-                "enableLegend": true,
-                "spatialOperator": "$intersects",
-                "useExtent": false,
-                "enableChartSwitch": true,
-                "enableExtentSwitch": true
-            },
-            "instanceFactory": true,
-            "immediate": true,
-            "references": [
-                {
-                    "name": "store",
-                    "providing": "ct.api.Store",
-                    "cardinality": "1..n",
-                    "filter": "(useIn=selection)"
-                },
-                {
-                    "name": "_mapState",
-                    "providing": "ct.mapping.map.MapState",
-                    "policy": "static"
-                },
-                {
-                    "name": "_tool",
-                    "providing": "ct.tools.Tool",
-                    "filter": "(id=analysisDistributionTool)"
-                }
-            ]
-        },
-        {
-            "name": "${toolName}",
-            "impl": "ct/tools/Tool",
-            "provides": ["ct.tools.Tool"],
-            "propertiesConstructor": true,
-            "properties": {
-                "id": "analysisDistributionTool",
-                "toolRole": "toolset",
-                "title": "${toolName}",
-                "tooltip": "${toolTooltip}",
-                "togglable": true,
-                "iconClass": "icon-chart-bar"
-            }
-        }
-    ]
+      ]
+    },
+    {
+      "name": "${toolName}",
+      "impl": "ct/tools/Tool",
+      "provides": [
+        "ct.tools.Tool"
+      ],
+      "propertiesConstructor": true,
+      "properties": {
+        "id": "analysisDistributionTool",
+        "toolRole": "toolset",
+        "title": "${toolName}",
+        "tooltip": "${toolTooltip}",
+        "togglable": true,
+        "iconClass": "icon-chart-bar"
+      }
+    }
+  ]
 }
