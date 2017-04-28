@@ -39,6 +39,45 @@
         "useExtent": false
       }
     },
+    "custominfo": {
+      "CustomInfoToggleTool": [
+        {
+          "id": "customInfoTool",
+          "activateOnStartup": true,
+          "title": "Information",
+          "tooltip": "Information",
+          "iconClass": "icon-custom-info-info",
+          "toolClass": "ctInfo",
+          "togglable": true,
+          "widgetSettings": {
+            "content": "This app shows the functionality of the Analysis / Distribution Bundle which counts the distribution of unique values of features and display the results as chart. <br><br> It analyses feature types in a defined AGSStore that have coded values and creates a tab with chart showing the distribution of them. Every coded value will be counted and displayed. You can switch between columnchart or a piechart. If you use the extent-option only features that are contained in these extent are taken into account  <br><br> Please click on the button in the upper left corner to show the analysis.",
+            "window": {
+              "title": "Information",
+              "marginBox": {
+                "w": 300,
+                "h": 220,
+                "l": 25,
+                "b": 70
+              },
+              "draggable": true,
+              "closable": true,
+              "modal": false,
+              "maximizable": false,
+              "resizable": true
+            }
+          }
+        }
+      ],
+      "enabled": true
+    },
+    "banner": {
+      "BannerWidget": {
+        "label": "Developer Network",
+        "image": "https://www.conterra.de/~/media/conterra/images/site_logos/conterra-logo.ashx",
+        "imagePosition": "above",
+        "link": "http://developernetwork.conterra.de/"
+      }
+    },
     "agssearch": {
       "AGSStore": [
         {
@@ -141,35 +180,6 @@
           "id": "_AGS_STORE_1447515368626"
         }
       ],
-      "enabled": true
-    },
-    "banner": {
-      "BannerWidget": {
-        "label": "Developer Network",
-        "image": "https://www.conterra.de/~/media/conterra/images/site_logos/conterra-logo.ashx",
-        "imagePosition": "above",
-        "link": "http://developernetwork.conterra.de/"
-      }
-    },
-    "console": {
-      "enabled": true
-    },
-    "contentviewer": {
-      "enabled": true
-    },
-    "coordinatetransformer": {
-      "enabled": true
-    },
-    "custominfo": {
-      "enabled": true
-    },
-    "dataform": {
-      "enabled": true
-    },
-    "infoviewer": {
-      "enabled": true
-    },
-    "legend": {
       "enabled": true
     },
     "map": {
@@ -448,34 +458,10 @@
       },
       "enabled": true
     },
-    "mapflow": {
-      "enabled": true
-    },
-    "maptip": {
-      "enabled": true
-    },
-    "mobiletoc": {
-      "enabled": true
-    },
-    "mobileview": {
-      "enabled": true
-    },
-    "notifier": {
-      "enabled": true
-    },
-    "parametermanager": {
-      "enabled": true
-    },
     "selection": {
       "SelectionAction": {
         "autoDeactivateTool": true
       },
-      "enabled": true
-    },
-    "splashscreen": {
-      "enabled": true
-    },
-    "templatelayout": {
       "enabled": true
     },
     "templates": {
@@ -536,9 +522,6 @@
           }
         ]
       },
-      "enabled": true
-    },
-    "windowmanager": {
       "enabled": true
     }
   }
