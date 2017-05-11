@@ -14,10 +14,6 @@
     {
       "name": "agssearch",
       "version": "^3.2.1"
-    },
-    {
-      "name": "resultcenter",
-      "version": "^3.2.1"
     }
   ],
   "CSS-Themes-Extension": [
