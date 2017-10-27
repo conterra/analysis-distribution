@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 con terra GmbH (info@conterra.de)
+ * Copyright (C) 2017 con terra GmbH (info@conterra.de)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,8 +37,7 @@ define([
     "dojox/charting/action2d/Highlight",
     "dojo/fx/easing",
     "ct/util/css",
-    "./ChartingWidgetController",
-    "dojo/dom-geometry"
+    "./ChartingWidgetController"
 ], function (declare,
         _Widget,
         _TemplatedMixin,
@@ -62,8 +61,7 @@ define([
         Highlight,
         d_easing,
         ct_css,
-        ChartingWidgetController,
-        domGeometry) {
+        ChartingWidgetController) {
     return declare([_Widget, _TemplatedMixin,
         _WidgetsInTemplateMixin], {
         templateString: templateStringContent,
