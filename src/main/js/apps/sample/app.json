@@ -21,7 +21,6 @@
       "legend@^3.2.1",
       "agssearch@^3.2.1",
       "banner@^3.2.1",
-      "wizard",
       "dn_analysisdistribution"
     ]
   },
@@ -68,7 +67,7 @@
         "label": "Developer Network",
         "image": "https://www.conterra.de/~/media/conterra/images/site_logos/conterra-logo.ashx",
         "imagePosition": "above",
-        "link": "http://developernetwork.conterra.de/"
+        "link": "https://developernetwork.conterra.de/"
       }
     },
     "agssearch": {
@@ -77,7 +76,7 @@
           "title": "Stoerungen",
           "description": "",
           "idProperty": "objectid",
-          "url": "http://services.conterra.de/arcgis/rest/services/training/stoerungen/MapServer/0",
+          "url": "https://services.conterra.de/arcgis/rest/services/mapapps/stoerung_en/MapServer/0",
           "useIn": [
             "selection"
           ],
@@ -94,7 +93,7 @@
           "omniSearchLabelAttr": "Name",
           "omniSearchSearchAttr": "Name",
           "idProperty": "OBJECTID",
-          "url": "http://water.discomap.eea.europa.eu/arcgis/rest/services/BathingWater/BathingWater_Dyna_WM/MapServer/3",
+          "url": "https://water.discomap.eea.europa.eu/arcgis/rest/services/BathingWater/BathingWater_Dyna_WM/MapServer/3",
           "useIn": [
             "omnisearch",
             "selection"
@@ -163,7 +162,7 @@
           "services": [
             {
               "id": "worldimage",
-              "url": "http://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer",
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer",
               "type": "AGS_TILED",
               "title": "Luftbild",
               "description": "Luftbildaufnahmen der gesamten Welt",
@@ -188,7 +187,7 @@
             },
             {
               "id": "worldtopo",
-              "url": "http://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer",
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer",
               "type": "AGS_TILED",
               "title": "Topographische Karte",
               "description": "Eine topographische Weltkarte",
@@ -254,7 +253,7 @@
             {
               "id": "streets",
               "description": "Eine detaillierte Stra\u00DFenkarte",
-              "url": "http://services.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer",
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer",
               "type": "AGS_TILED",
               "title": "Stra\u00DFen",
               "layers": [
@@ -266,7 +265,7 @@
             },
             {
               "id": "service_32645",
-              "url": "http://services.conterra.de/arcgis/rest/services/training/stoerungen/MapServer",
+              "url": "https://services.conterra.de/arcgis/rest/services/mapapps/stoerung_en/MapServer",
               "type": "AGS_DYNAMIC",
               "title": "Stoerungen",
               "description": "Karte mit fiktiven St\u00F6rungsmeldungen f\u00FCr map.apps Trainings.",
