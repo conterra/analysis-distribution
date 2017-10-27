@@ -5,7 +5,7 @@ It analyses feature types in a defined AGSStore that have coded values and creat
 
 Sample App
 ------------------
-http://www.mapapps.de/mapapps/resources/apps/downloads_analysis_distribution/index.html
+https://demos.conterra.de/mapapps/resources/apps/downloads_analysis_distribution/index.html
 
 Installation Guide
 ------------------
